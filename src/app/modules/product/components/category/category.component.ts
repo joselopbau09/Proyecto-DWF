@@ -8,16 +8,16 @@ import { Category } from '../../_models/category';
 })
 export class CategoryComponent implements OnInit{
   
-  public categories!: Category[]; 
+  public categories: Category[] = []; 
 
   ngOnInit(): void {
     this.getCategories();
   }
 
   getCategories():void {
-    for (let index = 0; index < 3; index++) {
-      this.categories.push(new Category(index, `C-${index}`, 'Virus', 'Activo'));
-    }
+      this.categories.push(new Category(1, 'C001', 'Category 1', 'Activo'));
+      this.categories.push(new Category(2, 'CX12', 'Category 2', 'Inactivo'));
+      this.categories.push(new Category(3, 'AX24', 'Category 3', 'Inactivo'));
   }
 
 }
