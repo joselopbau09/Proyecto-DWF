@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../_models/category';
+import { FormBuilder, Validators } from "@angular/forms";
+
+declare var $: any;
 
 @Component({
   selector: 'app-category',
@@ -8,6 +11,11 @@ import { Category } from '../../_models/category';
 })
 export class CategoryComponent implements OnInit{
   
+  
+  constructor (
+    private formBuilder: FormBuilder,
+  ){}
+
   public categories: Category[] = []; 
 
   ngOnInit(): void {
@@ -20,4 +28,7 @@ export class CategoryComponent implements OnInit{
       this.categories.push(new Category(3, 'AX24', 'Category 3', 'Inactivo'));
   }
 
+  showModalForm():void {
+    $("#modalForm").modal("show");
+  }
 }
