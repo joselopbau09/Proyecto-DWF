@@ -43,6 +43,10 @@
     <div class="card">
         <div class="card-header">
             <h5>Lista de categorias</h5>
+            <!-- Boton para lanzar el modal -->
+            <button type="button" class="btn btn-primary" (click)="showModalForm()" data-toggle="modal" data-target="#modalForm">
+              Nueva categoría
+            </button>
         </div>
         <div class="card-body">
             <table class="table">
@@ -68,14 +72,10 @@
     </div>    
 </div>  
 
-<!-- Boton para lanzar el modal -->
-<button type="button" class="btn btn-primary" (click)="showModalForm()" data-toggle="modal" data-target="#modalForm">
-  Nueva categoría
-</button>
 
 <!-- Modal -->
 <div class="modal fade" data-bs-backdrop="static" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalFormLabel">Categoría</h5>
@@ -84,7 +84,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Datos</p>
+
+        <form>
+          <div class="form-group">
+            <label for="code">Code:</label>
+            <input type="text" class="form-control" id="code" placeholder="XXXX">
+          </div>
+          
+          <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" class="form-control" id="category" placeholder="Category X">
+          </div>
+
+          <div class="form-group">
+            <label for="status">Example select</label>
+            <select class="form-control" id="status">
+              <option>Activo</option>
+              <option>Inactivo</option>
+            </select>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
