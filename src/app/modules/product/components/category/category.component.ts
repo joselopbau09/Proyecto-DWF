@@ -11,19 +11,21 @@ declare var $: any;
 })
 export class CategoryComponent implements OnInit {
   
+
+  categories: Category[] = []; 
+  submitted:boolean = false;
+  idCategoria:number = 4;
+
   form = this.formBuilder.group({
     code: ["", [Validators.required]],
     category: ["", [Validators.required]],
     status: ["", [Validators.required]],
   });
   
-  submitted:boolean = false;
 
   constructor (
     private formBuilder: FormBuilder,
   ){}
-
-  categories: Category[] = []; 
 
   ngOnInit(): void {
     this.getCategories();
@@ -42,12 +44,13 @@ export class CategoryComponent implements OnInit {
 
     this.submitted = false;
 
-    let category = new Category(0, this.form.controls['code'].value!, this.form.controls['category'].value!,this.form.controls['status'].value!);
+    let category = new Category(this.idCategoria, this.form.controls['code'].value!, this.form.controls['category'].value!,this.form.controls['status'].value!);
     this.categories.push(category);
+    this.idCategoria++;
     
     $("#modalForm").modal("hide");
 
-    alert("Región guardada exitosamente!");
+    alert("¡Se han registrado los datos!");
   }
 
   showModalForm():void {
