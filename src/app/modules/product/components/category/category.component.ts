@@ -9,14 +9,20 @@ declare var $: any;
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit{
+export class CategoryComponent implements OnInit {
   
+  form = this.formBuilder.group({
+    code: ["", [Validators.required]],
+    category: ["", [Validators.required]],
+  });
   
+  submitted:boolean = false;
+
   constructor (
     private formBuilder: FormBuilder,
   ){}
 
-  public categories: Category[] = []; 
+  categories: Category[] = []; 
 
   ngOnInit(): void {
     this.getCategories();
@@ -28,7 +34,24 @@ export class CategoryComponent implements OnInit{
       this.categories.push(new Category(3, 'AX24', 'Category 3', 'Inactivo'));
   }
 
+  onSubmit(): void{
+    this.submitted = true;
+
+    if(this.form.invalid) return;
+
+    this.submitted = false;
+
+    let category = new Category(0, this.form.controls['code'].value!, this.form.controls['category'].value!,"");
+    this.categories.push(category);
+    
+    $("#modalForm").modal("hide");
+
+    alert("Región guardada exitosamente!");
+  }
+
   showModalForm():void {
+    this.form.reset();
+    this.submitted = false;
     $("#modalForm").modal("show");
   }
 }

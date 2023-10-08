@@ -10,7 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoryComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
+  exports: [
+    CategoryComponent
+  ]
 })
 export class ProductModule { }

@@ -85,15 +85,28 @@
       </div>
       <div class="modal-body">
 
-        <form>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          
           <div class="form-group">
+
             <label for="code">Code:</label>
-            <input type="text" class="form-control" id="code" placeholder="XXXX">
+            <input type="text" class="form-control" formControlName="code" id="code" placeholder="XXXX"
+              [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}">
+              <div *ngIf="form.controls['code'].errors && submitted">
+                <small class="color-red">Favor de ingresar un codigo válido</small>
+              </div>  
+
           </div>
           
           <div class="form-group">
+
             <label for="category">Category:</label>
-            <input type="text" class="form-control" id="category" placeholder="Category X">
+            <input type="text" class="form-control" formControlName="category" id="category" placeholder="Category X"
+            [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">
+            <div *ngIf="form.controls['category'].errors && submitted">
+              <small class="color-red">Favor de ingresar una categoria válida</small>
+            </div>  
+
           </div>
 
           <div class="form-group">
@@ -103,11 +116,10 @@
               <option>Inactivo</option>
             </select>
           </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-form">Guardar</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>
