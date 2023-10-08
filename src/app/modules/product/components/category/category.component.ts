@@ -14,6 +14,7 @@ export class CategoryComponent implements OnInit {
   form = this.formBuilder.group({
     code: ["", [Validators.required]],
     category: ["", [Validators.required]],
+    status: ["", [Validators.required]],
   });
   
   submitted:boolean = false;
@@ -41,7 +42,7 @@ export class CategoryComponent implements OnInit {
 
     this.submitted = false;
 
-    let category = new Category(0, this.form.controls['code'].value!, this.form.controls['category'].value!,"");
+    let category = new Category(0, this.form.controls['code'].value!, this.form.controls['category'].value!,this.form.controls['status'].value!);
     this.categories.push(category);
     
     $("#modalForm").modal("hide");
@@ -55,3 +56,4 @@ export class CategoryComponent implements OnInit {
     $("#modalForm").modal("show");
   }
 }
+  
