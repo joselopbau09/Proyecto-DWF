@@ -42,7 +42,13 @@
   <div class="container">
     <div class="card">
         <div class="card-header">
+            
             <h5>Lista de categorias</h5>
+            <!-- Boton para lanzar el modal -->
+            <button type="button" class="btn btn-primary" (click)="showModalForm()" data-toggle="modal" data-target="#modalForm">
+              Nueva categoría
+            </button>
+
         </div>
         <div class="card-body">
             <table class="table">
@@ -67,3 +73,61 @@
         </div>    
     </div>    
 </div>  
+
+
+
+<!-- Modal -->
+<div class="modal fade" data-bs-backdrop="static" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalFormLabel">Categoría</h5>
+        <button type="button" class="close close-btn" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          
+          <div class="form-group">
+
+            <label for="code">Code:</label>
+            <input type="text" class="form-control" formControlName="code" id="code" placeholder="XXXX"
+              [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}">
+              <div *ngIf="form.controls['code'].errors && submitted">
+                <small class="color-red">Favor de ingresar un codigo válido</small>
+              </div>  
+
+          </div>
+          
+          <div class="form-group">
+
+            <label for="category">Category:</label>
+            <input type="text" class="form-control" formControlName="category" id="category" placeholder="Category X"
+            [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">
+            <div *ngIf="form.controls['category'].errors && submitted">
+              <small class="color-red">Favor de ingresar una categoria válida</small>
+            </div>  
+
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <select class="form-control form-select" formControlName="status" id="status">
+              <option>Activo</option>
+              <option>Inactivo</option>
+            </select>
+            <div *ngIf="form.get('status')?.invalid && (submitted || form.get('status')?.touched)" class="text-danger">
+              Debes seleccionar un status.
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info btn-form">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

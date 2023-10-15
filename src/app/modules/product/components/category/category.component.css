@@ -2,7 +2,22 @@
     width: min(90%, 1280px);
     margin: 30px auto;
 }
+
 .navbar-content {
     max-width: 1280px;
     margin: auto;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.close-btn {
+    border: none;
+    background-color: #ff827e;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
 }
