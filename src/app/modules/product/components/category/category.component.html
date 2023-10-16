@@ -46,6 +46,7 @@
             <h5>Lista de categorias</h5>
             <!-- Boton para lanzar el modal -->
             <button type="button" class="btn btn-primary" (click)="showModalForm()" data-toggle="modal" data-target="#modalForm">
+              <i class="ph ph-plus-circle icon-text-button"></i>
               Nueva categoría
             </button>
 
@@ -58,6 +59,7 @@
                         <th>code</th>
                         <th>category</th>
                         <th>status</th>
+                        <th>mas</th>
                     </tr>    
                 </thead>
 
@@ -67,6 +69,7 @@
                     <td>{{ category.code }}</td>
                     <td>{{ category.category }}</td>
                     <td>{{ category.status }}</td>
+                    <td><i class="ph ph-dots-three-outline-vertical icon-menu"></i></td>
                   </tr>
                 </tbody>
             </table>

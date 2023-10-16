@@ -21,3 +21,22 @@
     width: 26px;
     height: 26px;
 }
+
+.icon-text-button{
+    font-size: 14px;
+    margin-right: 3px;
+}
+
+.icon-menu {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.icon-menu:hover{
+    background-color: rgba(9, 30, 66, 0.08);
+    transition-duration: 0s, 0.15s;
+    padding: 5px;
+    border-radius: 50%;
+    color: blue;
+
+}
