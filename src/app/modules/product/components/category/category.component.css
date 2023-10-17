@@ -22,21 +22,42 @@
     height: 26px;
 }
 
-.icon-text-button{
-    font-size: 14px;
-    margin-right: 3px;
-}
-
 .icon-menu {
-    font-size: 14px;
-    cursor: pointer;
+    font-size: 20px;
 }
 
 .icon-menu:hover{
-    background-color: rgba(9, 30, 66, 0.08);
-    transition-duration: 0s, 0.15s;
+    background-color: rgba(55, 66, 85, 0.301);
+    border-radius: 10px;
+    color: rgb(89, 89, 170);
+}
+
+.icon-text-ul{
+    font-size: 20px;
+  }
+
+.icon-text-ul:hover{
+    background-color: rgba(55, 66, 85, 0.301);
     padding: 5px;
     border-radius: 50%;
-    color: blue;
-
+    color: rgb(89, 89, 170);
 }
+
+.td-status-enable {
+    background-color: rgba(88, 139, 235, 0.747);
+    color: rgb(0, 0, 0);
+  }
+  
+.td-status-disable {
+    background-color: rgb(229, 160, 160);
+    color: rgb(0, 0, 0);
+  }
+
+  .td-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 10px;
+  }
+  

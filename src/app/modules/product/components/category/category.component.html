@@ -54,11 +54,11 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                    <tr class="table-info">
-                        <th>category_id</th>
-                        <th>code</th>
-                        <th>category</th>
-                        <th>status</th>
+                    <tr class="table-primary">
+                        <th>Category_id</th>
+                        <th>Code</th>
+                        <th>Category</th>
+                        <th>Estatus</th>
                         <th>mas</th>
                     </tr>    
                 </thead>
@@ -68,8 +68,30 @@
                     <td>{{ category.category_id }}</td>
                     <td>{{ category.code }}</td>
                     <td>{{ category.category }}</td>
-                    <td>{{ category.status }}</td>
-                    <td><i class="ph ph-dots-three-outline-vertical icon-menu"></i></td>
+                    <td>
+                      <div class="td-status"
+                      [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                        {{ category.status == 0 ? "Inactivo" : "Activo" }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn">
+                        <button class="btn" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                          <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                        </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" (click)="updateCategory(category)">
+                              <i class="ph ph-note-pencil icon-text-ul"></i> Editar
+                            </a>
+                            <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                              <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                            </a>
+                            <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                              <i class="ph ph-x-circle icon-text-ul"></i> Desactivar
+                            </a>
+                          </div>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
             </table>
@@ -84,15 +106,17 @@
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalFormLabel">Categoría</h5>
+        <h5 class="modal-title">{{ categoryUpdated == 0? "Registrar": "Actualizar" }} Categoría</h5>
         <button type="button" class="close close-btn" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
+        <!-- Form -->
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           
+          <!-- Category -->
           <div class="form-group">
 
             <label for="code">Code:</label>
@@ -101,18 +125,16 @@
               <div *ngIf="form.controls['code'].errors && submitted">
                 <small class="color-red">Favor de ingresar un codigo válido</small>
               </div>  
-
           </div>
           
+          <!-- Code -->
           <div class="form-group">
-
             <label for="category">Category:</label>
             <input type="text" class="form-control" formControlName="category" id="category" placeholder="Category X"
             [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">
             <div *ngIf="form.controls['category'].errors && submitted">
               <small class="color-red">Favor de ingresar una categoria válida</small>
             </div>  
-
           </div>
 
           <div class="form-group">
@@ -126,6 +148,7 @@
             </div>
           </div>
 
+          <!-- Submit -->
           <div class="modal-footer">
             <button type="submit" class="btn btn-info btn-form">Guardar</button>
           </div>
