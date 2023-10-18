@@ -19,7 +19,6 @@
     form = this.formBuilder.group({
       code: ["", [Validators.required]],
       category: ["", [Validators.required]],
-      status: ["", [Validators.required]],
     });
     
 

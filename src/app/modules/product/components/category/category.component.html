@@ -137,17 +137,6 @@
             </div>  
           </div>
 
-          <div class="form-group">
-            <label for="status">Status:</label>
-            <select class="form-control form-select" formControlName="status" id="status">
-              <option>Activo</option>
-              <option>Inactivo</option>
-            </select>
-            <div *ngIf="form.get('status')?.invalid && (submitted || form.get('status')?.touched)" class="text-danger">
-              Debes seleccionar un status.
-            </div>
-          </div>
-
           <!-- Submit -->
           <div class="modal-footer">
             <button type="submit" class="btn btn-info btn-form">Guardar</button>
