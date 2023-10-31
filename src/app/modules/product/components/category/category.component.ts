@@ -59,10 +59,11 @@
             position: 'top-end',
             icon: 'success',
             toast: true, 
-            text: 'Categoría desactivada correctamente',
+            text: 'La categoría ha sido desactivada',
             showConfirmButton: false,
+            timerProgressBar: true,
             background: '#EAF7F7',
-            timer: 200
+            timer: 2000
         });
 
           this.getCategories();
@@ -76,6 +77,7 @@
             showConfirmButton: false,
             text: err.error.message, 
             background: '#EAF7F7',
+            timerProgressBar: true,
             timer: 2000
         });
       }
@@ -93,6 +95,7 @@
             text: 'La categoría ha sido activada',
             background: '#E8F8F8',
             showConfirmButton: false,
+            timerProgressBar: true,
             timer: 2000
           });
   
@@ -107,6 +110,7 @@
             showConfirmButton: false,
             text: err.error.message,
             background: '#F8E8F8',
+            timerProgressBar: true,
             timer: 2000
           });
         }
