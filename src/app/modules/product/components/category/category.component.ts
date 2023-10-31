@@ -62,7 +62,7 @@
             text: 'La categoría ha sido desactivada',
             showConfirmButton: false,
             timerProgressBar: true,
-            background: '#EAF7F7',
+            background: '#eef5ed',
             timer: 2000
         });
 
@@ -93,7 +93,7 @@
             icon: 'success',
             toast: true,
             text: 'La categoría ha sido activada',
-            background: '#E8F8F8',
+            background: '#eef5ed',
             showConfirmButton: false,
             timerProgressBar: true,
             timer: 2000
@@ -133,13 +133,13 @@
             position: 'top-end',
             icon: 'success',
             toast: true,
-            text: 'La región ha sido registrada',
+            text: 'La categoría ha sido registrada',
             background: '#E8F8F8',
             showConfirmButton: false,
             timer: 2000
           });
   
-          this.getCategories(); // consulta regiones con los cambios realizados
+          this.getCategories();
       
           $("#modalForm").modal("hide");
         },
@@ -166,13 +166,13 @@
             position: 'top-end',
             icon: 'success',
             toast: true,
-            text: 'La región ha sido actualizada',
+            text: 'La categoría ha sido actualizada',
             background: '#E8F8F8',
             showConfirmButton: false,
             timer: 2000
           });
   
-          this.getCategories(); // consulta regiones con los cambios realizados
+          this.getCategories();
       
           $("#modalForm").modal("hide"); // oculta el modal de registro
   
