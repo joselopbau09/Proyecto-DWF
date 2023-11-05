@@ -1,7 +1,9 @@
   import { Component, OnInit } from '@angular/core';
   import { Category } from '../../_models/category';
   import { FormBuilder, Validators } from "@angular/forms";
+  import { CategoryService } from "../../_services/category.service";
 
+  import Swal from 'sweetalert2';
   declare var $: any;
 
   @Component({
@@ -9,8 +11,8 @@
     templateUrl: './category.component.html',
     styleUrls: ['./category.component.css']
   })
+
   export class CategoryComponent implements OnInit {
-    
     categories: Category[] = []; 
     submitted:boolean = false;
     idCategoria:number = 4;
@@ -24,6 +26,7 @@
 
     constructor (
       private formBuilder: FormBuilder,
+      private categoryService: CategoryService
     ){}
 
     ngOnInit(): void {
@@ -31,9 +34,163 @@
     }
 
     getCategories():void {
-        this.categories.push(new Category(1, 'C001', 'Category 1', 1));
-        this.categories.push(new Category(2, 'CX12', 'Category 2', 0));
-        this.categories.push(new Category(3, 'AX24', 'Category 3', 0));
+      this.categoryService.getCategorys().subscribe(
+        res => {
+          this.categories = res;
+        },
+        err => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            showConfirmButton: false,
+            text: err.error.message,
+            background: '#FFF0F7',
+            timer: 2000
+          });
+        }
+      );
+    }
+
+    disableCategory(id: number){
+      this.categoryService.disableCategory(id).subscribe(
+        res => {
+          //Mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true, 
+            text: 'La categoría ha sido desactivada',
+            showConfirmButton: false,
+            timerProgressBar: true,
+            background: '#eef5ed',
+            timer: 2000
+        });
+
+          this.getCategories();
+        },
+        err => {
+          //Mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: err.error.message, 
+            background: '#EAF7F7',
+            timerProgressBar: true,
+            timer: 2000
+        });
+      }
+    );
+    }
+
+    enableCategory(id: number){
+      this.categoryService.enableCategory(id).subscribe(
+        res => {
+          //Mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'La categoría ha sido activada',
+            background: '#eef5ed',
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 2000
+          });
+  
+          this.getCategories(); 
+        },
+        err => {
+          //Mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: err.error.message,
+            background: '#F8E8F8',
+            timerProgressBar: true,
+            timer: 2000
+          });
+        }
+      );
+    }
+
+    onSubmit(){
+      if(this.categoryUpdated == 0){
+        this.onSubmitCreate();
+      }else{
+        this.onSubmitUpdate();
+      }
+    }
+
+    onSubmitCreate(){
+      this.categoryService.createCategory(this.form.value).subscribe(
+        res => {
+          //Mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'La categoría ha sido registrada',
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 2000
+          });
+  
+          this.getCategories();
+      
+          $("#modalForm").modal("hide");
+        },
+        err => {
+          //Mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: err.error.message,
+            background: '#F8E8F8',
+            timer: 2000
+          });
+        }
+      );
+    }
+
+    onSubmitUpdate(){
+      this.categoryService.updateCategory(this.form.value, this.categoryUpdated).subscribe(
+        res => {
+          // muestra mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'La categoría ha sido actualizada',
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 2000
+          });
+  
+          this.getCategories();
+      
+          $("#modalForm").modal("hide"); // oculta el modal de registro
+  
+          this.categoryUpdated = 0; // resetea el id de la región que se actualiza a 0
+        },
+        err => {
+          // muestra mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: err.error.message,
+            background: '#F8E8F8',
+            timer: 2000
+          });
+        }
+      );
     }
 
     updateCategory(category:Category){
@@ -46,76 +203,7 @@
       this.submitted = false;
       $("#modalForm").modal("show");
     }
-
-    disableCategory(id: number){
-      this.categories.forEach((category) => {
-        if(category.category_id == id){
-          category.status = 0;
-          alert('Categoría desactivada correctamente');
-        }
-      });
-      console.log("Salir");
-    }
-
-    enableCategory(id: number){
-      this.categories.forEach((category) => {
-        if(category.category_id == id){
-          category.status = 1;
-          alert('Categoría desactivada correctamente');
-        }
-      });
-      console.log("Salir");
-    }
-
-    onSubmit(){
-      if(this.categoryUpdated == 0){
-        this.onSubmitCreate();
-      }else{
-        this.onSubmitUpdate();
-      }
-    }
-
-    onSubmitCreate(){
-      this.submitted = true;
-  
-      if(this.form.invalid) return;
-  
-      this.submitted = false;
-  
-      let category = new Category(this.idCategoria, this.form.controls['category'].value!, this.form.controls['code'].value!, 1);
-      this.idCategoria++;
-      console.log(this.form.value);
-      this.categories.push(category);
-      
-      $("#modalForm").modal("hide");
-  
-      alert("Categoría guardada exitosamente!");
-
-    }
-
-    onSubmitUpdate(){
-      this.submitted = true;
-  
-      if(this.form.invalid) return;
-  
-      this.submitted = false;
-  
-      for(let category of this.categories){
-        if(category.category_id == this.categoryUpdated){
-          category.category = this.form.controls['category'].value!;
-          category.code = this.form.controls['code'].value!;
-          break;
-        }
-      }
-      
-      $("#modalForm").modal("hide");
-  
-      alert("Categoría actualizada exitosamente!");
-  
-      this.categoryUpdated = 0;
-  
-    }
-
+    
     showModalForm(){
       this.form.reset();
       this.categoryUpdated = 0;
