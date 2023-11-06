@@ -40,6 +40,11 @@ export class ProductComponent {
     private router: Router, // redirigir a otro componente
   ) {}
 
+  // primera función que se ejecuta
+  ngOnInit(){
+    this.getProducts();
+  }
+  
 
   // CRUD product
 
@@ -125,6 +130,43 @@ export class ProductComponent {
     );
   }
 
+  onSubmit(){
+    // valida el formulario
+    this.submitted = true;
+    if(this.form.invalid) return;
+    this.submitted = false;
+
+    this.productService.createProduct(this.form.value).subscribe(
+      res => {
+        // muestra mensaje de confirmación
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          toast: true,
+          text: 'El producto ha sido registrado',
+          background: '#E8F8F8',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+        this.getProducts(); // consulta productos con los cambios realizados
+    
+        $("#modalForm").modal("hide"); // oculta el modal de registro
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          toast: true,
+          showConfirmButton: false,
+          text: err.error.message,
+          background: '#F8E8F8',
+          timer: 2000
+        });
+      }
+    );
+  }
 
 
 
