@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductModule } from './modules/product/product.module';
+import { SharedModule } from './modules/shared/shared.module';
+import { ProductosModule } from './modules/productos/productos.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { ProductModule } from './modules/product/product.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductModule
+    ProductModule,
+    SharedModule,
+    ProductosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

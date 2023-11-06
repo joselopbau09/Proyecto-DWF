@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ProductComponent } from './components/product/product/product.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -9,8 +11,10 @@ import { ProductComponent } from './components/product/product/product.component
     ProductComponent
   ],
   imports: [
-    CommonModule
-  ],exports: [
+    CommonModule,
+    SharedModule
+  ],
+  exports: [
     ProductComponent
   ]
 })
