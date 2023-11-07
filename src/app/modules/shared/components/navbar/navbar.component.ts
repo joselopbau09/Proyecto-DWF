@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  mostrar: boolean = false;
+
+  mostrarElemento() {
+    this.mostrar = true;
+  }
+
+  ocultarElemento() {
+    this.mostrar = false;
+  }
 }
