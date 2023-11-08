@@ -1,6 +1,9 @@
-.sticky-footer {
+footer.sticky-footer {
+    position: fixed;
+    bottom: 0;
     padding: 20px;
-    margin-top: 50px;
+    margin-top: 30px;
+    width: 100%;
 }
 .footer-position {
     display: flex;
