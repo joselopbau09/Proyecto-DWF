@@ -22,6 +22,8 @@ export class ProductImageComponent {
 
   product: any | Product = new Product(); 
   product_image_id: any | string = ""; 
+  product_image: any | string = ""; 
+
 
   categories: Category[] = []; // lista de categorías
   category: any | Category = new Category(); // datos de la categoría del producto
@@ -66,6 +68,7 @@ export class ProductImageComponent {
         timer: 2000
       });
     }
+    this.updateProductImage('')
   }
 
   // CRUD product
@@ -175,7 +178,8 @@ export class ProductImageComponent {
           showConfirmButton: false,
           timer: 2000
         });
-
+        console.log(res)
+        this.product_image = res;
         this.getProduct(); // consulta el cliente con los cambios realizados
     
         $("#modalForm").modal("hide"); // oculta el modal de registro

@@ -1,0 +1,12 @@
+.sticky-footer {
+    padding: 20px;
+    margin-top: 50px;
+}
+.footer-position {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.iconos-footer {
+    column-gap: 15px;
+}

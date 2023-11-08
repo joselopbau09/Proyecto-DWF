@@ -1,5 +1,15 @@
-<div>
-    <shared-navbar></shared-navbar>
-
-    <router-outlet></router-outlet>
-</div>
+    
+<div id="wrapper">
+    
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+      <div id="content">
+        <shared-navbar></shared-navbar>
+        <div class="app-content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+        <shared-footer></shared-footer>
+    </div>
+  </div>
+  
