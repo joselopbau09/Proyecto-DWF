@@ -6,12 +6,15 @@ import { ProductComponent } from './components/product/product/product.component
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ProductImageComponent } from './components/product-image/product-image.component';
+import { CategoryComponent } from '../product/components/category/category.component';
+import { NgxPhotoEditorModule } from "ngx-photo-editor";
 
 
 @NgModule({
   declarations: [
-    ProductComponent
+    ProductComponent,
+    ProductImageComponent
   ],
   imports: [
     CommonModule,
@@ -19,10 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPhotoEditorModule
   ],
   exports: [
-    ProductComponent
+    ProductComponent,
+    ProductImageComponent
   ]
 })
 export class ProductosModule { }
