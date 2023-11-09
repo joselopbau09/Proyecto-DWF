@@ -25,7 +25,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body-product text-center">
-                    <img src="{{ product_image != '' ? product_image: 'assets/product_logo.jpg' }}" alt="..." class="img-thumbnail product-image">
+                    <img src="{{ product.product_image != '' ? product_image: 'assets/product_logo.jpg' }}" alt="..." class="img-thumbnail product-image">
                 </div>
                 <div class="edit-product-image text-center">
                     <label for="uploadImage" class="cursor-pointer">
@@ -91,7 +91,7 @@
                             <!-- status  -->
                             <tr>
                                 <th class="col-md-4">Status</th>
-                                <td>{{ product.status }}</td>
+                                <td>{{ product.status == 0 ? 'Inactivo' : 'Activo'}}</td>
                             </tr>
 
                         </tbody>

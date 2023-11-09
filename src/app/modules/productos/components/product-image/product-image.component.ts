@@ -22,7 +22,8 @@ export class ProductImageComponent {
 
   product: any | Product = new Product(); 
   product_image_id: any | string = ""; 
-  product_image: any | string = ""; 
+  gtin: any | string = "";
+  product_image: ProductImage[] = []; 
 
 
   categories: Category[] = []; // lista de categorías
@@ -37,7 +38,6 @@ export class ProductImageComponent {
     price: ["", [Validators.required]],
     stock: ["", [Validators.required]],
     category_id: ["", [Validators.required]],
-    status: ["", [Validators.required]],
     product_image_id: ["", [Validators.required]],
   });
 
@@ -54,9 +54,10 @@ export class ProductImageComponent {
   ){}
 
   ngOnInit(){
-    this.product_image_id = this.route.snapshot.paramMap.get('gtin');
-    if(this.product_image_id){
+    this.gtin = this.route.snapshot.paramMap.get('gtin');
+    if(this.gtin){
       this.getProduct();
+      this.getImage();
     }else{
       Swal.fire({
         position: 'top-end',
@@ -74,7 +75,7 @@ export class ProductImageComponent {
   // CRUD product
 
   getProduct(){
-    this.ProductService.getProduct(this.product_image_id).subscribe(
+    this.ProductService.getProduct(this.gtin).subscribe(
       res => {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
@@ -87,6 +88,29 @@ export class ProductImageComponent {
           toast: true,
           showConfirmButton: false,
           text: err.error.message,
+          background: '#F8E8F8',
+          timer: 2000
+        });
+      }
+    );
+  }
+
+  getImage(){
+    this.productImageService.getProductImage(this.product.product_id).subscribe(
+      (product_image: ProductImage[]) => {
+        product_image.forEach(product_image => {
+          product_image.image = 'assets/img/${product_image.image}';
+        });
+        this.product_image = product_image;
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          toast: true,
+          showConfirmButton: false,
+          text: 'Imagen no encontrada',
           background: '#F8E8F8',
           timer: 2000
         });
@@ -114,7 +138,7 @@ export class ProductImageComponent {
         });
 
         if(this.form.controls['product_image_id'].value != this.product_image_id){
-          this.product_image_id = this.form.controls['product_image_id'].value!; // actualizamos el rfc
+          this.product_image_id = this.form.controls['product_image_id'].value!; 
 
           let currentUrl = this.router.url.split("/");
           currentUrl.pop();
@@ -154,7 +178,6 @@ export class ProductImageComponent {
     this.form.controls['price'].setValue(this.product.price);
     this.form.controls['stock'].setValue(this.product.stock);
     this.form.controls['category_id'].setValue(this.product.category_id);
-    this.form.controls['status'].setValue(this.product.status);
 
     $("#modalForm").modal("show");
   }
@@ -163,7 +186,7 @@ export class ProductImageComponent {
 
   updateProductImage(image: string){
     let productImage: ProductImage = new ProductImage();
-    productImage.product_image_id = this.product.image.product_image_id;
+    productImage.product_id = this.product.product_id;
     productImage.image = image;
 
     this.productImageService.updateProductImage(productImage).subscribe(
@@ -178,8 +201,6 @@ export class ProductImageComponent {
           showConfirmButton: false,
           timer: 2000
         });
-        console.log(res)
-        this.product_image = res;
         this.getProduct(); // consulta el cliente con los cambios realizados
     
         $("#modalForm").modal("hide"); // oculta el modal de registro
@@ -191,7 +212,7 @@ export class ProductImageComponent {
           icon: 'error',
           toast: true,
           showConfirmButton: false,
-          text: err.error.message,
+          text: 'La imagen no ha sido actualizada',
           background: '#F8E8F8',
           timer: 2000
         });
@@ -204,7 +225,7 @@ export class ProductImageComponent {
   getCategories(){
     this.categoryService.getCategories().subscribe(
       res => {
-        this.categories = res; // asigna la respuesta de la API a la lista de regiones
+        this.categories = res;
       },
       err => {
         // muestra mensaje de error
