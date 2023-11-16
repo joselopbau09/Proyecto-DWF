@@ -14,10 +14,11 @@
     width: 240px;
     height: 240px;
 }
-
+.cursor {
+    cursor: pointer;
+}
 .edit-product{
     color: blue;
-    cursor: pointer;
     float: right;
     margin-right: 16px;
 }

@@ -7,6 +7,7 @@ import { ProductModule } from './modules/product/product.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ProductosModule } from './modules/productos/productos.module';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
+import { CustomerModule } from './modules/customer/customer.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgxPhotoEditorModule } from 'ngx-photo-editor';
     ProductModule,
     SharedModule,
     ProductosModule,
-    NgxPhotoEditorModule
+    NgxPhotoEditorModule,
+    CustomerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

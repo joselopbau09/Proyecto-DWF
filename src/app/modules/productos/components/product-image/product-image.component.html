@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md">
             <span class="btn-return" (click)="redirect(['product'])">
-                <i class="ph ph-arrow-circle-left icon-text-button"></i>
+                <i class="ph cursor ph-arrow-circle-left icon-text-button"></i>
                 Regresar
             </span>
         </div>
@@ -26,13 +26,6 @@
             <div class="card">
                 <div class="card-body-product text-center">
                     <shared-carousel-imagenes [producImage]="product_images"></shared-carousel-imagenes>
-                    <!-- <div id="carouselExampleIndicators" #mycarouselControls class="carousel slide" data-ride="carousel" data-interval=false>
-                        <div class="carousel-inner">                
-                                <ul *ngFor="let image of product_images">
-                                    <li><img src={{image.image}} class="d-block w-100 carousel-pic" alt="..."></li>                                  
-                                </ul>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="edit-product-image text-center">
                     <label for="uploadImage" class="cursor-pointer">
