@@ -95,7 +95,6 @@ export class ProductImageComponent {
   }
 
   getImage(){
-    console.log(this.product_images);
     this.productImageService.getProductImage(this.product.product_id).subscribe(
       (product_images: ProductImage[]) => {
         product_images.forEach(product_image => {
@@ -103,6 +102,7 @@ export class ProductImageComponent {
           product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
         this.product_images = product_images;
+        console.log(this.product_images);
       },
       err => {
         // muestra mensaje de error
