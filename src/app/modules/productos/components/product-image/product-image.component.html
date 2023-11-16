@@ -25,7 +25,13 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body-product text-center">
-                    <img src="{{ product.product_image != '' ? product_image: 'assets/product_logo.jpg' }}" alt="..." class="img-thumbnail product-image">
+                    <div id="carouselExampleIndicators" #mycarouselControls class="carousel slide" data-ride="carousel" data-interval=false>
+                        <div class="carousel-inner">                
+                                <ul *ngFor="let image of product_images">
+                                    <li><img src={{image.image}} class="d-block w-100 carousel-pic" alt="..."></li>                                  
+                                </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="edit-product-image text-center">
                     <label for="uploadImage" class="cursor-pointer">

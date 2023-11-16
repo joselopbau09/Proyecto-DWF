@@ -23,7 +23,7 @@ export class ProductImageComponent {
   product: any | Product = new Product(); 
   product_image_id: any | string = ""; 
   gtin: any | string = "";
-  product_image: ProductImage[] = []; 
+  product_images: ProductImage[] = []; 
 
 
   categories: Category[] = []; // lista de categorías
@@ -57,7 +57,6 @@ export class ProductImageComponent {
     this.gtin = this.route.snapshot.paramMap.get('gtin');
     if(this.gtin){
       this.getProduct();
-      this.getImage();
     }else{
       Swal.fire({
         position: 'top-end',
@@ -69,7 +68,6 @@ export class ProductImageComponent {
         timer: 2000
       });
     }
-    this.updateProductImage('')
   }
 
   // CRUD product
@@ -79,6 +77,7 @@ export class ProductImageComponent {
       res => {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
+        this.getImage();
       },
       err => {
         // muestra mensaje de error
@@ -96,12 +95,14 @@ export class ProductImageComponent {
   }
 
   getImage(){
+    console.log(this.product_images);
     this.productImageService.getProductImage(this.product.product_id).subscribe(
-      (product_image: ProductImage[]) => {
-        product_image.forEach(product_image => {
-          product_image.image = 'assets/img/${product_image.image}';
+      (product_images: ProductImage[]) => {
+        product_images.forEach(product_image => {
+          let image_route = product_image.image;
+          product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
-        this.product_image = product_image;
+        this.product_images = product_images;
       },
       err => {
         // muestra mensaje de error
@@ -137,13 +138,15 @@ export class ProductImageComponent {
           timer: 2000
         });
 
-        if(this.form.controls['product_image_id'].value != this.product_image_id){
-          this.product_image_id = this.form.controls['product_image_id'].value!; 
+        if(this.form.controls['gtin'].value != this.gtin){
+          this.gtin = this.form.controls['gtin'].value!; // actualizamos el gtin
 
+          // sustituimos en la url el nuevo gtin
           let currentUrl = this.router.url.split("/");
           currentUrl.pop();
-          currentUrl.push(this.product_image_id);
+          currentUrl.push(this.gtin);
           
+          // actualizamos la url con el nuevo gtin
           this.redirect(currentUrl);
         }
 
@@ -188,8 +191,10 @@ export class ProductImageComponent {
     let productImage: ProductImage = new ProductImage();
     productImage.product_id = this.product.product_id;
     productImage.image = image;
-
-    this.productImageService.updateProductImage(productImage).subscribe(
+    let numimages = this.product_images.length
+    productImage.product_image_id = numimages + 1;
+    console.log(productImage.image);
+    this.productImageService.uploadProductImage(productImage).subscribe(
       res => {
         // muestra mensaje de confirmación
         Swal.fire({
@@ -271,7 +276,7 @@ export class ProductImageComponent {
       resizeToWidth: 360,
       resizeToHeight: 360,
     }).subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.updateProductImage(data.base64!);
     });
   }
