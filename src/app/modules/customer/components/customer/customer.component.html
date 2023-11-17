@@ -30,23 +30,23 @@
             <td>{{ customer.rfc }}</td>
             <td>
               <div class="td-status"
-              [ngClass]="{'td-status-enable': customer.status == 1, 'td-status-disable': customer.status == 0}" >
+                [ngClass]="{'td-status-enable': customer.status == 1, 'td-status-disable': customer.status == 0}" >
                 {{ customer.status == 0 ? "Inactivo" : "Activo" }}
               </div>
             </td>
             <td>
               <div class="dropdown">
-                <button class="btn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item"  (click)="showCustomer(customer.rfc)">
+                <div class="dropdown-menu">
+                  <a class="dropdown-item cursor"  (click)="showCustomer(customer.rfc)">
                     <i class="ph ph-note-pencil icon-text-ul"></i>Ver detalles
                   </a>
-                  <a *ngIf="customer.status == 0" class="dropdown-item enable-item" (click)="enableCustomer(customer.customer_id)">
+                  <a *ngIf="customer.status == 0" class="dropdown-item enable-item cursor" (click)="enableCustomer(customer.customer_id)">
                     <i class="ph ph-check-circle icon-text-ul"></i> Activar
                   </a>
-                  <a *ngIf="customer.status == 1" class="dropdown-item disable-item" (click)="disableCustomer(customer.customer_id)">
+                  <a *ngIf="customer.status == 1" class="dropdown-item disable-item cursor" (click)="disableCustomer(customer.customer_id)">
                     <i class="ph ph-x-circle icon-text-ul"></i> Desactivar
                   </a>
                 </div>
@@ -74,12 +74,9 @@
       <div class="modal-body">
 
         <!-- form  -->
-
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">          
           
           <div class="row">
-
               <!-- name  -->
 
               <div class="col-md-6">

@@ -38,17 +38,17 @@
               </td>
               <td>
                 <div class="dropdown">
-                  <button class="btn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" (click)="updateRegion(region)">
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item cursor" (click)="updateRegion(region)">
                       <i class="ph ph-note-pencil icon-text-ul"></i>Editar
                     </a>
-                    <a *ngIf="region.status == 0" class="dropdown-item enable-item" (click)="enableRegion(region.region_id)">
+                    <a *ngIf="region.status == 0" class="dropdown-item enable-item cursor" (click)="enableRegion(region.region_id)">
                       <i class="ph ph-check-circle icon-text-ul"></i> Activar
                     </a>
-                    <a *ngIf="region.status == 1" class="dropdown-item disable-item" (click)="disableRegion(region.region_id)">
+                    <a *ngIf="region.status == 1" class="dropdown-item disable-item cursor" (click)="disableRegion(region.region_id)">
                       <i class="ph ph-x-circle icon-text-ul"></i> Desactivar
                     </a>
                   </div>

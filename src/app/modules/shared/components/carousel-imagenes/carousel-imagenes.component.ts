@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductImage } from 'src/app/modules/productos/_models/productImage';
+import { CustomerImage } from '../../interfaces/customerImage';
 
 @Component({
   selector: 'shared-carousel-imagenes',
@@ -9,6 +10,5 @@ import { ProductImage } from 'src/app/modules/productos/_models/productImage';
 export class CarouselImagenesComponent {
 
   @Input()
-  public producImage: ProductImage[] = [];
-  
+  public producImage: any[]= [];
 }

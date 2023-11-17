@@ -200,10 +200,10 @@ export class CustomerComponent {
   
     // modals 
   
-    showModalForm(){
+  showModalForm(){
       this.form.reset();
       this.submitted = false;
       // this.getRegions();
       $("#modalForm").modal("show");
-    }
+  }
 }

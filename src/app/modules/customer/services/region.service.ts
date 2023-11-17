@@ -21,7 +21,7 @@ export class RegionService {
   }
 
   public disableRegion(id: number) {
-    return this.http.delete(`${this.url}/${id}/activate`);
+    return this.http.delete(`${this.url}/${id}`);
   }
 
   public updateRegion(region: any, id: number) {

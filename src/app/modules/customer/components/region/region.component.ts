@@ -215,7 +215,7 @@ export class RegionComponent {
 
    // modals 
 
-   showModalForm(){
+  showModalForm(){
     this.form.reset();
     this.regionUpdated = 0;
     this.submitted = false;
