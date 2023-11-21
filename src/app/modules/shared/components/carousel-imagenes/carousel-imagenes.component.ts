@@ -10,5 +10,5 @@ import { CustomerImage } from '../../interfaces/customerImage';
 export class CarouselImagenesComponent {
 
   @Input()
-  public producImage: any[]= [];
+  public producImage: any[] = [];
 }
