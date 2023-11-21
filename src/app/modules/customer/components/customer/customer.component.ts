@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { CustomerService } from '../../services/customer.service';
-import { DtoCustomer } from 'src/app/modules/shared/interfaces/DtoCustomer';
+import { DtoCustomer } from 'src/app/modules/customer/_dtos/DtoCustomer';
 
 import Swal from'sweetalert2'; // sweetalert
 import { RegionService } from '../../services/region.service';
-import { Region } from 'src/app/modules/shared/interfaces/region';
+import { Region } from 'src/app/modules/customer/_models/region';
 
 declare var $: any; // jquery
 

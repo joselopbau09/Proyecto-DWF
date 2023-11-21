@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { Region } from 'src/app/modules/shared/interfaces/region';
+import { Region } from 'src/app/modules/customer/_models/region';
 import { RegionService } from '../../services/region.service';
 
 import Swal from'sweetalert2'; // sweetalert

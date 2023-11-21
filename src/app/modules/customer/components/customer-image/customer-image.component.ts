@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 import { CustomerService } from '../../services/customer.service';
-import { Customer } from 'src/app/modules/shared/interfaces/customer';
-import { CustomerImage } from 'src/app/modules/shared/interfaces/customerImage';
-import { Region } from 'src/app/modules/shared/interfaces/region';
+import { Customer } from 'src/app/modules/customer/_models/customer';
+import { CustomerImage } from 'src/app/modules/customer/_models/customerImage';
+import { Region } from 'src/app/modules/customer/_models/region';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomerImageService } from '../../services/customer-image.service';
 import { RegionService } from '../../services/region.service';
