@@ -8,22 +8,21 @@ import { DtoInvoiceList } from '../_dtos/dto-invoice-list';
 })
 export class InvoiceService {
 
-  private url = "http://localhost:8080";
-  private route = "/invoice";
+  private url = "http://localhost:8080/invoice";
 
   constructor(private http: HttpClient) { }
 
   getInvoice(id: number) {
-    return this.http.get<Invoice>(this.url + this.route + "/" + id + "/items");
+    return this.http.get<Invoice>(this.url + "/" + id + "/items");
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Invoice - función getInvoices() */
   getInvoices() {
-    return this.http.get<DtoInvoiceList[]>(this.url + this.route);
+    return this.http.get<DtoInvoiceList[]>(this.url);
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Invoice - función generateInvoice() */
   generateInvoice(invoice: any) {
-    return this.http.post(this.url + this.route, invoice);
+    return this.http.post(this.url, invoice);
   }
 }

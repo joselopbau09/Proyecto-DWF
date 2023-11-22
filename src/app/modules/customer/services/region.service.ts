@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Region } from '../../shared/interfaces/region';
+import { Region } from '../_models/region';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class RegionService {
   }
 
   public disableRegion(id: number) {
-    return this.http.delete(`${this.url}/${id}/activate`);
+    return this.http.delete(`${this.url}/${id}`);
   }
 
   public updateRegion(region: any, id: number) {

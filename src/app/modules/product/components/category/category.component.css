@@ -34,7 +34,7 @@
 
 .icon-text-ul{
     font-size: 20px;
-  }
+}
 
 .icon-text-ul:hover{
     padding: 5px;
@@ -50,9 +50,9 @@
 .td-status-disable {
     background-color: rgb(229, 160, 160);
     color: rgb(0, 0, 0);
-  }
+}
 
-  .td-status {
+.td-status {
     display: flex;
     justify-content: center;
     align-items: center;

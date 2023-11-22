@@ -8,13 +8,16 @@ import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 
 import { CustomerComponent } from './components/customer/customer.component';
 import { RegionComponent } from './components/region/region.component';
+import { CustomerImageComponent } from './components/customer-image/customer-image.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
     CustomerComponent,
-    RegionComponent
+    RegionComponent,
+    CustomerImageComponent,
   ],
   imports: [
     CommonModule,
@@ -23,10 +26,12 @@ import { RegionComponent } from './components/region/region.component';
     RouterModule,
     HttpClientModule,
     NgxPhotoEditorModule,
+    SharedModule
   ],
   exports: [
     CustomerComponent,
-    RegionComponent
+    RegionComponent,
+    CustomerImageComponent
   ]
 })
 export class CustomerModule { }

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DtoCustomer } from '../../shared/interfaces/DtoCustomer';
-import { Customer } from '../../shared/interfaces/customer';
+import { DtoCustomer } from '../_dtos/DtoCustomer';
+import { Customer } from '../_models/customer';
 
 
 @Injectable({

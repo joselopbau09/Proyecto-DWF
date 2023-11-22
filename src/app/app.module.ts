@@ -8,10 +8,11 @@ import { SharedModule } from './modules/shared/shared.module';
 import { ProductosModule } from './modules/productos/productos.module';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { CustomerModule } from './modules/customer/customer.module';
+import { InvoiceModule } from './modules/invoice/invoice.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,8 @@ import { CustomerModule } from './modules/customer/customer.module';
     SharedModule,
     ProductosModule,
     NgxPhotoEditorModule,
-    CustomerModule
+    CustomerModule,
+    InvoiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

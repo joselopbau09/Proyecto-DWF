@@ -7,26 +7,25 @@ import { DtoCartDetails } from '../_dtos/dto-cart-details';
 })
 export class CartService {
 
-  private url = "http://localhost:8080";
-  private route = "/cart";
+  private url = "http://localhost:8080/cart";
 
   constructor(private http: HttpClient) { }
 
   addToCart(cart: any) {
-    return this.http.post(this.url + this.route, cart);
+    return this.http.post(this.url, cart);
   }
 
   deleteCart(id: number) {
-    return this.http.delete(this.url + this.route + "/" + id);
+    return this.http.delete(this.url + "/" + id);
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función getCart() */
   getCart(rfc: string) {
-    return this.http.get<DtoCartDetails[]>(this.url + this.route);
+    return this.http.get<DtoCartDetails[]>(this.url);
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función removeFromCart() */
   removeFromCart(rfc: string) {
-    return this.http.delete(this.url + this.route + "/clear/" + rfc);
+    return this.http.delete(this.url + "/clear/" + rfc);
   }
 }
