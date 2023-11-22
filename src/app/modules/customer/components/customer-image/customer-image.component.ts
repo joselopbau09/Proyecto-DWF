@@ -49,6 +49,7 @@ export class CustomerImageComponent {
     private router: Router,
     private service: NgxPhotoEditorService
   ){}
+
   ngOnInit(){
     this.rfc = this.route.snapshot.paramMap.get('rfc');
     if(this.rfc){
@@ -221,6 +222,7 @@ export class CustomerImageComponent {
     this.regionService.getRegion(id).subscribe(
       res => {
         this.region = res; // asigna la respuesta de la API a la lista de regiones
+        console.log(this.region.region);
       },
       err => {
         // muestra mensaje de error

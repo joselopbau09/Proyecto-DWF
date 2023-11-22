@@ -10,7 +10,7 @@
         <div class="col-md">
             <span class="edit-product" (click)="updateCustomer()">
                 <i class="ph ph-note-pencil icon-text-button"></i>
-                Editar producto
+                Editar perfil
             </span>
         </div>
     </div>
@@ -25,8 +25,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body-product text-center">
-                    <shared-carousel-imagenes [producImage]="customerImage"></shared-carousel-imagenes>
-                </div>
+                    <img src="{{ customer.image.image != '' ? customer.image.image: 'assets/product_logo.jpg' }}" alt="..." class="img-thumbnail customer-image">                </div>
                 <div class="edit-product-image text-center">
                     <label for="uploadImage" class="cursor-pointer">
                         <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
