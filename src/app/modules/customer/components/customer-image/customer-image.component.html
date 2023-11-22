@@ -1,16 +1,16 @@
 <div class="card-header">
     <div class="row">
         <div class="col-md">
-            <span class="btn-return" (click)="redirect(['product'])">
+            <span class="btn-return" (click)="redirect(['customer'])">
                 <i class="ph cursor ph-arrow-circle-left icon-text-button"></i>
                 Regresar
             </span>
         </div>
         
         <div class="col-md">
-            <span class="edit-product" (click)="updateCustomer()">
+            <span class="edit-customer" (click)="updateCustomer()">
                 <i class="ph ph-note-pencil icon-text-button"></i>
-                Editar producto
+                Editar cliente
             </span>
         </div>
     </div>
@@ -27,7 +27,7 @@
                 <div class="card-body-product text-center">
                     <shared-carousel-imagenes [producImage]="customerImage"></shared-carousel-imagenes>
                 </div>
-                <div class="edit-product-image text-center">
+                <div class="edit-customer-image text-center">
                     <label for="uploadImage" class="cursor-pointer">
                         <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
                         <i class="ph ph-note-pencil icon-text-button"></i>
@@ -47,7 +47,7 @@
                     <!-- name  -->
 
                     <div class="customer-title">
-                        {{ customer.name + " " + customer.surname }}
+                        {{ customer.name}}  {{customer.surname }}
                     </div>
 
                     <table class="table">
