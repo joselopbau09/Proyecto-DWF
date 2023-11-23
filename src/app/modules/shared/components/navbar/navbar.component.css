@@ -11,20 +11,23 @@ nav {
 /* Animacion de la navbar */
 @keyframes animationNavbar {
     to {
-        background-color: black;
+        background-color:rgba(0, 0, 0, .85);
         -webkit-box-shadow: 0px 1px 3px 1px rgba(64,61,64,1);
         -moz-box-shadow: 0px 1px 3px 1px rgba(64,61,64,1);
         box-shadow: 0px 1px 3px 1px rgba(64,61,64,1);
     }
 }
 a {
-    font-family: 'Bakbak One', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     text-decoration: none;
+    font-size: 15px;
 }
 ul {
     display: flex;
     column-gap: 10px;
+    margin: 0;
+    padding: 0;
 }
 li {
     list-style: none;
@@ -50,27 +53,9 @@ li {
 
 /* Boton carrioto */
 .btn-cart {
-    background-color: transparent;
-    width: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    border: 2px solid white;
-    border-radius: 50%;
-}
-.icon-cart {
-    width: 25px;
-    height: 25px;
-    color: white;
+    cursor: pointer;
     transition-duration: 0.3s;
-    transition-property: background;
 }
 .btn-cart:hover {
-    background-color: white;
+    scale: 1.1;
 }
-.btn-cart:hover > svg {
-    color: black;
-}
-
