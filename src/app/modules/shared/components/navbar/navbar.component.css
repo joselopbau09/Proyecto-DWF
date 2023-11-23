@@ -22,7 +22,14 @@ a {
     color: white;
     text-decoration: none;
     font-size: 15px;
+    transition-duration: 0.5s;
+    border-bottom: 3px solid transparent;
+    padding-bottom: 3px;    
 }
+a:hover {
+    border-bottom-color: white;
+}
+
 ul {
     display: flex;
     column-gap: 10px;

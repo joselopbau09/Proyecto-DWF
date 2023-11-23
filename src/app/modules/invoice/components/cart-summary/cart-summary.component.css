@@ -1,0 +1,24 @@
+.summary {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 25px;
+}
+.acomodo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+p{
+    margin: 0;
+}
+.btn-compra{
+    width: 100%;
+    padding: 14px;
+    margin-top: 30px;
+    border: 0;
+    background-color: black;
+    color: white;
+}
+
+.btn-compra:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
