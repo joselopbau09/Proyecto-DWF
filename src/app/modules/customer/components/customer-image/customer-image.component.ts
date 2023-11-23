@@ -20,12 +20,12 @@ declare var $: any; // jquery
   styleUrls: ['./customer-image.component.css']
 })
 export class CustomerImageComponent {
-  customer: any | Customer; 
+  customer: any | Customer = new Customer(); 
   rfc: any | string = ""; // rfc del cliente consultado
 
 
   regions: Region[] = []; // lista de regiones
-  region: any | Region; // datos de la region del cliente
+  region: any | Region = new Region(); // datos de la region del cliente
 
   // formulario de actualización
   form = this.formBuilder.group({
@@ -149,7 +149,7 @@ export class CustomerImageComponent {
     this.form.controls['surname'].setValue(this.customer.surname);
     this.form.controls['rfc'].setValue(this.customer.rfc);
     this.form.controls['mail'].setValue(this.customer.mail);
-    this.form.controls['region_id'].setValue(this.customer.region_id);
+    this.form.controls['region_id'].setValue(this.customer.region_id.toString());
     this.form.controls['address'].setValue(this.customer.address);
 
     $("#modalForm").modal("show");

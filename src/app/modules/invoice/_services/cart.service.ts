@@ -21,7 +21,7 @@ export class CartService {
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función getCart() */
   getCart(rfc: string) {
-    return this.http.get<DtoCartDetails[]>(this.url + this.route + "/" + rfc);
+    return this.http.get<DtoCartDetails[]>(this.url + "/" + rfc);
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función removeFromCart() */
