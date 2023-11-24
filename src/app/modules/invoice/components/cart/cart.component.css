@@ -6,5 +6,5 @@ hr {
     display: grid;
     grid-template-columns: 2fr 1fr;
     margin: 70px;
-    column-gap: 40px;
+    column-gap: 35px;
 }

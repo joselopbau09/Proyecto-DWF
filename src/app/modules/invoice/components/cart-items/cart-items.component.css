@@ -1,5 +1,13 @@
-h2,h4 {
-    font-weight: bold;
+h2 {
+    font-weight: 900;
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+h4 {
+    font-weight: 700;
+}
+h2, h4, p , b {
+    font-family: 'Montserrat', sans-serif;
 }
 img {
     width: 200px;
@@ -10,6 +18,10 @@ p {
 }
 svg {
     cursor: pointer;
+}
+.precio, span {
+    font-weight: 700;
+    color: black;
 }
 /* svg:hover {
     stroke: red;
