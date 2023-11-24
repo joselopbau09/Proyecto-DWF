@@ -1,34 +1,67 @@
-/* .card {
-    padding: 0.75rem 1.25rem;
+h1, h3, h5 {
+    color: white;
+}
+.contenedor {
+    display: grid;
+    place-items: center;
+}
+.producto {
+    margin: 80px 0;
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    -webkit-box-shadow: -18px -15px 39px -28px rgba(0,0,0,0.75);
+    -moz-box-shadow: -18px -15px 39px -28px rgba(0,0,0,0.75);
+    box-shadow: -18px -15px 39px -28px rgba(0,0,0,0.75);
+    width: 75%;
+}
+.imagenProducto {
+    display: grid;
+    place-items: center;
+    padding: 30px;
+    background-color: white;
+}
+.informacionProducto {
+    color: white;
+    padding: 30px;
+    padding-bottom: 0;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+.tituloProducto {
+    margin-top: 90px;
+}
+.descripcion {
     margin-bottom: 0;
-    background-color: #f8f9fc;
-    border-bottom: 1px solid #e3e6f0;
-} */
+    margin-top: 40px;
+}
+.gtin {
+    margin-bottom: 40px;
+}
+.precio {
+    margin-bottom: 60px;
+}
+/* Boton */
+.btn-compra {
+    border: 0;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    padding: 30px;
+    transition: .2s;
+}
+.btn-compra:hover{
+    background-color: white;
+    color: black;
+}
+hr {
+    margin-bottom: 0;
+}
+/* Header */
 
-.card-body-product{
-    padding: 16px;
-}
-
-.product-image{
-    border-radius: 100%;
-    width: 240px;
-    height: 240px;
-}
-.cursor {
-    cursor: pointer;
-}
-.edit-product{
-    color: blue;
-    float: right;
-    margin-right: 16px;
-}
-
-.edit-product-image{
-    color: blue;
-    margin-bottom: 16px;
-}
-
-.product-title{
-    font-size: 32px;
-    margin-bottom: 16px;
+.edit-product {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    
 }
