@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../_models/product';
 import { ProductService } from '../../_services/product.service';
@@ -6,10 +6,14 @@ import { ProductService } from '../../_services/product.service';
 import Swal from'sweetalert2'; // sweetalert
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
+
+import { CategoryService } from '../../_services/category.service';
+import { CartService } from '../../_services/cart.service';
 import { ProductImageService } from '../../_services/product-image.service';
+
 import { ProductImage } from '../../_models/productImage';
 import { Category } from '../../_models/category';
-import { CategoryService } from '../../_services/category.service';
+import { DtoCartDetails } from '../../_dtos/dto-cart-details';
 
 declare var $: any; // jquery
 
@@ -24,6 +28,14 @@ export class ProductImageComponent {
   product_image_id: any | string = ""; 
   gtin: any | string = "";
   product_images: ProductImage[] = []; 
+
+  productoParaCarrito: DtoCartDetails = {
+    gtin: '',
+    image: '',
+    product: new Product,
+    quantity: 0,
+    rfc: ''
+  };
 
 
   categories: Category[] = []; // lista de categorías
@@ -46,8 +58,9 @@ export class ProductImageComponent {
   constructor(
     private ProductService: ProductService, 
     private productImageService: ProductImageService, 
-    private formBuilder: FormBuilder, 
     private categoryService: CategoryService, 
+    private cartService: CartService,
+    private formBuilder: FormBuilder, 
     private route: ActivatedRoute, 
     private router: Router,
     private service: NgxPhotoEditorService
@@ -78,6 +91,13 @@ export class ProductImageComponent {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
         this.getImage();
+        this.productoParaCarrito = {
+          gtin: this.product.gtin,
+          image: 'String',
+          product: this.product,
+          quantity: 1,
+          rfc: 'SAAI920101A01'
+        }
       },
       err => {
         // muestra mensaje de error
@@ -283,5 +303,35 @@ export class ProductImageComponent {
 
   redirect(url: string[]){
     this.router.navigate(url);
+  }
+
+  // Agregar al carrito
+  public agregarAlCarrito(): void {
+    this.cartService.addToCart(this.productoParaCarrito).subscribe(
+      res => {
+        // muestra mensaje de confirmación
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          toast: true,
+          text: 'Producto agregado al carrito!',
+          background: '#E8F8F8',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          toast: true,
+          showConfirmButton: false,
+          text: 'No Se pudo agregar al carrito',
+          background: '#F8E8F8',
+          timer: 2000
+        });
+      }
+    );
   }
 }
