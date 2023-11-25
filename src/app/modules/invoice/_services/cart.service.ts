@@ -15,7 +15,7 @@ export class CartService {
     return this.http.post(this.url, cart);
   }
 
-  deleteCart(id: number) {
+  removeFromCart(id: number) {
     return this.http.delete(this.url + "/" + id);
   }
 
@@ -25,7 +25,7 @@ export class CartService {
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función removeFromCart() */
-  removeFromCart(rfc: string) {
+  deleteCart(rfc: string) {
     return this.http.delete(this.url + "/clear/" + rfc);
   }
 }
