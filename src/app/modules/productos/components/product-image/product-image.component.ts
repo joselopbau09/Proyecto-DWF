@@ -24,10 +24,11 @@ declare var $: any; // jquery
 })
 export class ProductImageComponent {
 
-  product: any | Product = new Product(); 
-  product_image_id: any | string = ""; 
-  gtin: any | string = "";
-  product_images: ProductImage[] = []; 
+  public product: any | Product = new Product(); 
+  public product_image_id: any | string = ""; 
+  public gtin: any | string = "";
+  public product_images: ProductImage[] = []; 
+  public cantidadProducto: number = 1;
 
   productoParaCarrito: DtoCartDetails = {
     gtin: '',
@@ -36,7 +37,6 @@ export class ProductImageComponent {
     quantity: 0,
     rfc: ''
   };
-
 
   categories: Category[] = []; // lista de categorías
   category: any | Category = new Category(); // datos de la categoría del producto
@@ -91,13 +91,6 @@ export class ProductImageComponent {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
         this.getImage();
-        this.productoParaCarrito = {
-          gtin: this.product.gtin,
-          image: 'String',
-          product: this.product,
-          quantity: 1,
-          rfc: 'SAAI920101A01'
-        }
       },
       err => {
         // muestra mensaje de error
@@ -306,7 +299,25 @@ export class ProductImageComponent {
   }
 
   // Agregar al carrito
+  public aumentarCantidad(): void {
+    this.cantidadProducto += 1
+  }
+
+  public reducirCantidad(): void {
+    if (this.cantidadProducto === 1) {
+      return
+    }
+    this.cantidadProducto -= 1
+  }
+
   public agregarAlCarrito(): void {
+    this.productoParaCarrito = {
+      gtin: this.product.gtin,
+      image: 'String',
+      product: this.product,
+      quantity: this.cantidadProducto,
+      rfc: 'SAAI920101A01'
+    }
     this.cartService.addToCart(this.productoParaCarrito).subscribe(
       res => {
         // muestra mensaje de confirmación

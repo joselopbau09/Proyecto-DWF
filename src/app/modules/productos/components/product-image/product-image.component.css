@@ -57,6 +57,13 @@ h1, h3, h5 {
 hr {
     margin-bottom: 0;
 }
+svg {
+    cursor: pointer;
+}
+.cantidadProductos {
+    display: flex;
+    justify-content: space-evenly;
+}
 /* Header */
 
 .edit-product {

@@ -12,6 +12,7 @@ export class CartSummaryComponent {
 
   public rfc: string = 'SAAI920101A01';
 
+  public productosComprados: DtoCartDetails[] = [];
   @Input()
   public productosCarrito!: DtoCartDetails[];
 
@@ -22,7 +23,10 @@ export class CartSummaryComponent {
   public deleteCart():void {
     this.cartService.deleteCart(this.rfc).subscribe(
       res => {
+        this.productosComprados = this.productosCarrito;
       }
     );
   }
+
+
 }

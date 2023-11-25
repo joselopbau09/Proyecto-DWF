@@ -32,6 +32,9 @@
                 </label>
             </div>
         </div>
+                
+
+                
 
         <div class="informacionProducto">
             <h1 class="tituloProducto">{{product.product}}</h1>
@@ -42,6 +45,12 @@
             <span>{{ product.stock }}</span>
 
             <h3 class="precio">{{ product.price | currency }}</h3>
+
+            <div class="cantidadProductos">
+                <svg (click)="reducirCantidad()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M5 11h14v2H5z"></path></svg>
+                {{cantidadProducto}}
+                <svg (click)="aumentarCantidad()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+            </div>
 
             <hr>
 
