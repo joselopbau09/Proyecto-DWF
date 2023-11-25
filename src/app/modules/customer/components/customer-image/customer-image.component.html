@@ -17,78 +17,44 @@
 </div>
 <br>
 
-<div class="card-body">
-    <div class="row">
+<!-- Contenido del producto -->
+<div class="contenedor">
+    <div class="cliente">
 
-        <!-- Product image  -->
-        
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body-product text-center">
-                    <shared-carousel-imagenes [producImage]="customerImage"></shared-carousel-imagenes>
-                </div>
-                <div class="edit-customer-image text-center">
-                    <label for="uploadImage" class="cursor-pointer">
-                        <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
-                        <i class="ph ph-note-pencil icon-text-button"></i>
-                        Editar imagen
-                    </label>
-                </div>
+        <div class="imagenCliente">
+            <!-- TODO: Carusel de imagenes -->
+            <img src="../../../../../assets/perfil.png" alt="">
+            <div class="edit-product-image text-center">
+                <label for="uploadImage" class="cursor-pointer">
+                    <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
+                    <i class="ph ph-note-pencil icon-text-button"></i>
+                    Editar imagen
+                </label>
             </div>
         </div>
+                
 
-    
-        <!-- customer data  -->
-    
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body-customer">
+                
 
-                    <!-- name  -->
+        <div class="informacionCliente">
+            <h1 class="tituloCliente"> {{ customer.name}}  {{customer.surname }}</h1>
+             
+            <p class="descripcion">{{ customer.mail }}</p>
+            <h5 class="gtin">{{ customer.rfc }}</h5>
 
-                    <div class="customer-title">
-                        {{ customer.name}}  {{customer.surname }}
-                    </div>
+            <h3 class="precio">{{ region.region }}</h3>
+            <span>{{ customer.address }}</span>
+            
 
-                    <table class="table">
-                        <tbody>
-                            
-                            <!-- rfc  -->
-                            <tr>
-                                <th class="col-md-4">RFC</th>
-                                <td>{{ customer.rfc }}</td>
-                            </tr>
-                                
-                            <!-- mail  -->
-                            <tr>
-                                <th class="col-md-4">Correo electrónico</th>
-                                <td>{{ customer.mail }}</td>
-                            </tr>
-                                
-                            <!-- region  -->
-                            <tr>
-                                <th class="col-md-4">Región</th>
-                                <td>{{ region.region }}</td>
-                            </tr>
-                            
-                            <!-- rfc  -->
-                            <tr>
-                                <th class="col-md-4">Dirección</th>
-                                <td>{{ customer.address }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+
+            <hr>
+
         </div>
-    
-    
     </div>
 </div>
 
 
 <!-- Modal form  -->
-  
 <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -200,4 +166,4 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
