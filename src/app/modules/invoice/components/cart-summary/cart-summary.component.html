@@ -1,14 +1,9 @@
 <div class="summary">
     <p>Resumen de compra:</p>
-    <!-- TODO:Con un  ngfor -->
-    <div class="producto acomodo">
-        <b>Titulo del producto 1</b>
-        <b>$99.99</b>
-    </div>
-
-    <div class="producto acomodo">
-        <b>Titulo del producto 2</b>
-        <b>$99.99</b>
+    <!-- Resumen de productos-->
+    <div *ngFor="let producto of productosCarrito" class="producto acomodo">
+        <b>{{producto.product.product}}</b>
+        <b>{{producto.product.price | currency}}</b>
     </div>
 
     <hr>

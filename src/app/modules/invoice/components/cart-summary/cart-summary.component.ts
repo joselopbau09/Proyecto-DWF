@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { DtoCartDetails } from '../../_dtos/dto-cart-details';
 
 @Component({
   selector: 'invoice-cart-summary',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class CartSummaryComponent {
 
+  @Input()
+  public productosCarrito!: DtoCartDetails[];
 }
