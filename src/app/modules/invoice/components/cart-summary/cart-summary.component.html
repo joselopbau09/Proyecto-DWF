@@ -10,7 +10,7 @@
 
     <div class="precios acomodo">
         <p>Subtotal</p>
-        <p>$199.98</p>
+        <p>{{total | currency}}</p>
     </div>
     <div class="precios acomodo">
         <p>Taxes</p>
@@ -21,7 +21,7 @@
 
     <div class="precios acomodo">
         <b>TOTAL</b>
-        <b>$199.98</b>
+        <b>{{total | currency}}</b>
     </div>
 
     <button class="btn-compra" (click)="deleteCart()"><span>PROCEDER AL PAGO</span></button>
