@@ -2,6 +2,8 @@ import {Component, Input } from '@angular/core';
 
 import { DtoCartDetails } from '../../_dtos/dto-cart-details';
 import { CartService } from '../../_services/cart.service';
+import Swal from 'sweetalert2';
+import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 
 
 @Component({
@@ -22,10 +24,26 @@ export class CartItemsComponent {
     private cartService: CartService,
   ) {}
   
-  public removerProductoCarrito(cartId:number): void {
-    this.cartService.removeFromCart(cartId).subscribe(
-      res => {
-      }
-    );
-  }
+public removerProductoCarrito(cartId:number): void {
+  this.cartService.removeFromCart(cartId).subscribe(
+    res => {
+      this.productosCarrito = this.productosCarrito.filter( producto => producto.cart_id !== cartId);
+      this.cartService.getTotal(this.rfc).subscribe(nuevoTotal => {
+        this.cartService.totalCart.next(nuevoTotal);
+        console.log(nuevoTotal);
+      });
+    }
+  );
+  Swal.fire({
+    position: 'top-end',
+    icon: 'info',
+    toast: true, 
+    text: 'Se ha eliminado el producto del carrito',
+    showConfirmButton: false,
+    timerProgressBar: true,
+    background: '#eef5ed',
+    timer: 2000
+  });
+}
+  
 }

@@ -23,6 +23,16 @@ export class CartSummaryComponent implements OnChanges{
   constructor(
     private cartService: CartService,
     ) {}
+
+  ngOnInit(){
+      this.cartService.getCart(this.rfc).subscribe(productosCarrito => {
+        this.productosCarrito = productosCarrito;
+      });
+      this.cartService.totalCart.subscribe(total => {
+        this.total = total;
+      })
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.calcularTotal();
     for (let key in changes) {
