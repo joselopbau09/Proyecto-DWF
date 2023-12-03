@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Invoice } from '../_models/invoice';
 import { DtoInvoiceList } from '../_dtos/dto-invoice-list';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,12 @@ export class InvoiceService {
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Invoice - función getInvoices() */
-  getInvoices() {
+  getInvoices(rfc: string): Observable<DtoInvoiceList[]> {
     return this.http.get<DtoInvoiceList[]>(this.url);
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Invoice - función generateInvoice() */
-  generateInvoice(invoice: any) {
-    return this.http.post(this.url, invoice);
+  generateInvoice(invoice: DtoInvoiceList) {
+    return this.http.post(`${this.url}/SAAI920101A01`, invoice);
   }
 }
