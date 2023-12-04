@@ -16,6 +16,7 @@ declare var $: any; // jquery
 })
 export class InvoiceComponent {
 
+  public rfc: string = 'SAAI920101A01';
   invoices: DtoInvoiceList[] = []; // lista de facturas
 
   constructor (
@@ -23,27 +24,28 @@ export class InvoiceComponent {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.getInvoices();
-  }
+  // ngOnInit() {
+  //   this.getInvoices();
+  // }
 
-  getInvoices(){
-    this.invoiceService.getInvoices().subscribe(
-      res => {
-        this.invoices = res; // asigna la respuesta de la API a la lista de facturas
-      },
-      err => {
-        // muestra mensaje de error
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          toast: true,
-          showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
-          timer: 2000
-        });
-      }
-    );
-  }
+  // public getInvoices(){
+  //   this.invoiceService.getInvoices(this.rfc).subscribe(
+  //     res => {
+  //       this.invoices = res; // asigna la respuesta de la API a la lista de facturas
+  //     },
+  //     err => {
+  //       // muestra mensaje de error
+  //       Swal.fire({
+  //         position: 'top-end',
+  //         icon: 'error',
+  //         toast: true,
+  //         showConfirmButton: false,
+  //         text: err.error.message,
+  //         background: '#F8E8F8',
+  //         timer: 2000
+  //       });
+  //     }
+  //   );
+  // }
+
 }

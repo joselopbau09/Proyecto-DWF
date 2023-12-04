@@ -1,11 +1,9 @@
 import { Customer } from "../../customer/_models/customer";
-import { Item } from "../_models/item";
+import { DtoItem } from "./_dto-item";
 
 export class DtoInvoiceList{
-    created_at: number = 0;
     customer!: Customer;
-    invoice_id: number = 0;
-    items: Item[] = [];
+    items: DtoItem[] = [];
     rfc: string = "";
     subtotal: number = 0;
     taxes: number = 0;
