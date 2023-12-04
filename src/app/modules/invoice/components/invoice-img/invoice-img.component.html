@@ -1,1 +1,46 @@
-<p>invoice-img works!</p>
+<div class="card-header">
+    <div class="row">
+        <div class="col-md">
+            <span class="btn-return" (click)="redirect(['invoice'])">
+                <i class="ph cursor ph-arrow-circle-left icon-text-button"></i>
+                Regresar
+            </span>
+        </div>
+        
+    </div>
+</div>
+<br>
+
+<!-- Contenido del producto -->
+<div class="contenedor">
+    <div class="factura">                
+        <h2>Factura <span class="idFactura"># {{invoice.invoice_id}} </span></h2>
+        <div class="informacionFactura">
+
+            <div class="banco">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quaerat quod omnis
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quaerat quod omnis
+            </div>
+            <div class="descripcion">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, harum repellat eveniet, esse quod illo labore praesentium 
+            </div>
+
+            <ol  class="productos">
+                <li >{{ products }}</li>
+            </ol>
+            <!-- <h1 class="tituloCliente"> {{ customer.name}}  {{customer.surname }}</h1>
+             
+            <p class="descripcion">{{ customer.mail }}</p>
+            <h5 class="gtin">{{ customer.rfc }}</h5>
+
+            <h3 class="precio">{{ region.region }}</h3>
+            <span>{{ customer.address }}</span> -->
+            
+
+
+            <hr>
+
+        </div>
+    </div>
+</div>
+

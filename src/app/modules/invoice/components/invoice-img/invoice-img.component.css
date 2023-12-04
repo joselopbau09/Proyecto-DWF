@@ -1,0 +1,66 @@
+.cursor {
+    cursor: pointer;
+}
+h1, h3, h5 {
+    color: black;
+}
+.contenedor {
+    display: grid;
+    place-items: center;
+}
+.factura {
+    margin: 80px 0;
+    display: grid;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 75%;
+}
+.idFactura {
+    color: rgb(78, 76, 76);
+}
+.informacionFactura {
+    color: black;
+    padding: 30px;
+    padding-bottom: 0;
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+.tituloCliente {
+    margin-top: 90px;
+}
+.descripcion {
+    margin-bottom: 0;
+    margin-top: 40px;
+}
+.gtin {
+    margin-bottom: 40px;
+}
+.precio {
+    margin-bottom: 60px;
+}
+/* Boton */
+.btn-compra {
+    border: 0;
+    background-color: transparent;
+    color: black;
+    width: 100%;
+    padding: 30px;
+    transition: .2s;
+}
+.btn-compra:hover{
+    background-color: white;
+    color: black;
+}
+hr {
+    margin-bottom: 0;
+}
+svg {
+    cursor: pointer;
+}
+.cantidadProductos {
+    display: flex;
+    justify-content: space-evenly;
+}
+img {
+    width: 340px;
+    height: 390px;
+}
