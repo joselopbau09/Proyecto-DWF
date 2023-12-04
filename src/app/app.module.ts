@@ -9,6 +9,7 @@ import { ProductosModule } from './modules/productos/productos.module';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { CustomerModule } from './modules/customer/customer.module';
 import { InvoiceModule } from './modules/invoice/invoice.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { InvoiceModule } from './modules/invoice/invoice.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ProductModule,
     SharedModule,

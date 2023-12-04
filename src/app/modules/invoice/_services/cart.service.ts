@@ -15,6 +15,7 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
   totalCart = new Subject<number>();
+  productoEliminado = new Subject<number>();
 
   addToCart(cart: any) {
     return this.http.post(this.url, cart);
