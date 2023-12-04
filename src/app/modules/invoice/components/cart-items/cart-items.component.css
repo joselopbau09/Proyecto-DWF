@@ -39,10 +39,21 @@ svg {
     padding: 15px;
     margin-bottom: 15px;
 }
-.remover {
+.remover{
     display: flex;
     column-gap: 8px;
     justify-content: end;
     align-items: center;
     cursor: pointer;
 }
+.btn-remove {
+    background: #f5f5f5;
+    color: #000000;
+    border: 2px solid transparent;
+    padding: 16px 20px;
+    border-radius: 3px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+  }
