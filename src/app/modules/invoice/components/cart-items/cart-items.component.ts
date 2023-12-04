@@ -28,9 +28,9 @@ public removerProductoCarrito(cartId:number): void {
   this.cartService.removeFromCart(cartId).subscribe(
     res => {
       this.productosCarrito = this.productosCarrito.filter( producto => producto.cart_id !== cartId);
+      this.cartService.productoEliminado.next(cartId);
       this.cartService.getTotal(this.rfc).subscribe(nuevoTotal => {
         this.cartService.totalCart.next(nuevoTotal);
-        console.log(nuevoTotal);
       });
     }
   );

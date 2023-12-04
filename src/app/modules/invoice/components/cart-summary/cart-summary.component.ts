@@ -50,6 +50,9 @@ export class CartSummaryComponent implements OnChanges{
       this.cartService.totalCart.subscribe(total => {
         this.total = total;
       })
+      this.cartService.productoEliminado.subscribe(cartId => {
+        this.productosCarrito = this.productosCarrito.filter(producto => producto.cart_id !== cartId);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
