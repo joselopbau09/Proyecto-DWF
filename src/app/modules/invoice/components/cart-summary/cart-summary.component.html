@@ -1,7 +1,7 @@
 <div class="summary">
     <p>Resumen de compra:</p>
     <!-- Resumen de productos-->
-    <div *ngFor="let producto of productosCarrito" class="producto acomodo">
+    <div *ngFor="let producto of productosCarrito" class="producto acomodo" @fade>
         <b>{{producto.product.product}}</b>
         <b>{{producto.product.price | currency}}</b>
     </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 import Swal from'sweetalert2'; // sweetalert
 
 import { CartService } from '../../_services/cart.service';
@@ -13,7 +14,15 @@ import { Customer, Image } from 'src/app/modules/customer/_models/customer';
 @Component({
   selector: 'invoice-cart-summary',
   templateUrl: './cart-summary.component.html',
-  styleUrls: ['./cart-summary.component.css']
+  styleUrls: ['./cart-summary.component.css'],
+  animations: [
+    trigger('fade', [
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('0.5s ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ]
 })
 export class CartSummaryComponent implements OnChanges{
 
