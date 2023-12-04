@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { Invoice } from '../../_models/invoice';
 import { InvoiceService } from '../../_services/invoice.service';
 
 import Swal from'sweetalert2'; // sweetalert
@@ -31,7 +30,6 @@ export class InvoiceComponent {
     this.invoiceService.getInvoices(this.rfc).subscribe(
       res => {
         this.invoices = res; // asigna la respuesta de la API a la lista de facturas
-        console.log(res)
       },
       err => {
         // muestra mensaje de error
@@ -46,6 +44,10 @@ export class InvoiceComponent {
         });
       }
     );
+  }
+
+  public showInvoice(id:number): void {
+    this.router.navigate(['invoice/' + id]);
   }
 
 }

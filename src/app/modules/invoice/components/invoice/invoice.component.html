@@ -26,7 +26,7 @@
                         <td>{{ invoice.total | currency }}</td>
                         <td>{{ invoice.created_at }}</td>
                         <td>
-                            <a class="detalles cursor" >
+                            <a class="detalles cursor" (click)="showInvoice(invoice.invoice_id)">
                                 Ver detalles
                             </a>                          
                         </td>
