@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { DtoInvoiceList } from '../../_dtos/dto-invoice-list';
 import { Invoice } from '../../_models/invoice';
 import { InvoiceService } from '../../_services/invoice.service';
 
@@ -17,35 +16,36 @@ declare var $: any; // jquery
 export class InvoiceComponent {
 
   public rfc: string = 'SAAI920101A01';
-  invoices: DtoInvoiceList[] = []; // lista de facturas
+  invoices: any[] = []; // lista de facturas
 
   constructor (
     private invoiceService: InvoiceService,
     private router: Router
   ) {}
 
-  // ngOnInit() {
-  //   this.getInvoices();
-  // }
+  ngOnInit() {
+    this.getInvoices();
+  }
 
-  // public getInvoices(){
-  //   this.invoiceService.getInvoices(this.rfc).subscribe(
-  //     res => {
-  //       this.invoices = res; // asigna la respuesta de la API a la lista de facturas
-  //     },
-  //     err => {
-  //       // muestra mensaje de error
-  //       Swal.fire({
-  //         position: 'top-end',
-  //         icon: 'error',
-  //         toast: true,
-  //         showConfirmButton: false,
-  //         text: err.error.message,
-  //         background: '#F8E8F8',
-  //         timer: 2000
-  //       });
-  //     }
-  //   );
-  // }
+  public getInvoices(){
+    this.invoiceService.getInvoices(this.rfc).subscribe(
+      res => {
+        this.invoices = res; // asigna la respuesta de la API a la lista de facturas
+        console.log(res)
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          toast: true,
+          showConfirmButton: false,
+          text: err.error.message,
+          background: '#F8E8F8',
+          timer: 2000
+        });
+      }
+    );
+  }
 
 }

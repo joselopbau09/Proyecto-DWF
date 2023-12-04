@@ -13,13 +13,25 @@
                         <th>No.</th>
                         <th>RFC</th>
                         <th>Total</th>
-                        <th>Estatus</th>
+                        <th>Fecha</th>
                         <th>Detalles</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <!-- TODO: Implementar los metodos para obtener la información-->
+                    
+                    <tr *ngFor="let invoice of invoices; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{  this.rfc }}</td>
+                        <td>{{ invoice.total | currency }}</td>
+                        <td>{{ invoice.created_at }}</td>
+                        <td>
+                            <a class="detalles cursor" >
+                                Ver detalles
+                            </a>                          
+                        </td>
+                      </tr>
+
                 </tbody>
             </table>
         </div>
