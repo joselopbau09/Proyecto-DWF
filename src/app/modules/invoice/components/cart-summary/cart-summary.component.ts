@@ -67,33 +67,7 @@ export class CartSummaryComponent implements OnChanges{
     });
   }
 
-  public createInvoice(invoice: DtoInvoiceList): void {
-    this.invoiceService.generateInvoice(invoice).subscribe(
-      res => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          toast: true,
-          text: 'Se completo la compra!',
-          background: '#E8F8F8',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      },
-      err => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          toast: true,
-          showConfirmButton: false,
-          text: 'Hubo un erro al realizar la compra:' + err,
-          background: '#F8E8F8',
-          timer: 2000
-        });
-      }
-    )
-  }
-
+  
   public construirItems(): DtoItem[]{
     const items: DtoItem[] = [];
     if (this.productosCarrito.length === 0) {
@@ -115,29 +89,13 @@ export class CartSummaryComponent implements OnChanges{
 
     return items;
   }
-
-
-
-  public deleteCart():void {
-    this.cartService.deleteCart(this.rfc).subscribe(
-      res => {
-        this.productosComprados = this.productosCarrito;
-        const items: DtoItem[] = this.construirItems();
-        const invoice:DtoInvoiceList = {
-          customer: this.customer,
-          items: items,
-          rfc: this.rfc,
-          subtotal: this.total,
-          taxes: 0,
-          total: this.total
-        }
-        this.createInvoice(invoice);
-      }
-    );
-  }
+  
+  
+  
   
   public createInvoicePrueba(): void {
     const items: DtoItem[] = this.construirItems();
+    
     const invoice:DtoInvoiceList = {
       customer: this.customer,
       items: items,
@@ -160,17 +118,62 @@ export class CartSummaryComponent implements OnChanges{
         });
       },
       err => {
+        console.log(err)
         Swal.fire({
           position: 'top-end',
           icon: 'error',
           toast: true,
           showConfirmButton: false,
-          text: 'Hubo un erro al realizar la compra:' + err,
+          text:  `'Hubo un erro al realizar la compra: ${err}` ,
           background: '#F8E8F8',
           timer: 2000
         });
       }
-    )
+      )
+    }
+    
+    // TODO:Quiza se borraran estos metodos.
+    public deleteCart():void {
+      this.cartService.deleteCart(this.rfc).subscribe(
+        res => {
+          this.productosComprados = this.productosCarrito;
+          const items: DtoItem[] = this.construirItems();
+          const invoice:DtoInvoiceList = {
+            customer: this.customer,
+            items: items,
+            rfc: this.rfc,
+            subtotal: this.total,
+            taxes: 0,
+            total: this.total
+          }
+          this.createInvoice(invoice);
+        }
+      );
+    }
+    public createInvoice(invoice: DtoInvoiceList): void {
+      this.invoiceService.generateInvoice(invoice).subscribe(
+        res => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'Se completo la compra!',
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        },
+        err => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: 'Hubo un erro al realizar la compra:' + err,
+            background: '#F8E8F8',
+            timer: 2000
+          });
+        }
+      )
+    }
   }
-
-}
