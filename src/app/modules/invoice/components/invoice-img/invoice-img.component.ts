@@ -5,6 +5,8 @@ import Swal from'sweetalert2'; // sweetalert
 import { InvoiceService } from '../../_services/invoice.service';
 import { Invoice } from '../../_models/invoice';
 import { ProductService } from 'src/app/modules/productos/_services/product.service';
+import { Item } from '../../_models/item';
+import { Product } from 'src/app/modules/productos/_models/product';
 
 
 @Component({
@@ -15,7 +17,8 @@ import { ProductService } from 'src/app/modules/productos/_services/product.serv
 export class InvoiceImgComponent implements OnInit{
   public id:any;
   public invoice:Invoice = new Invoice();
-  public products: any[] = [];
+  public products: Product[] = [];
+  public product: Product = new Product();
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
@@ -23,16 +26,16 @@ export class InvoiceImgComponent implements OnInit{
     private productService:ProductService
     ) {
       this.id = this.route.snapshot.paramMap.get('id');
-  }
+    }
   ngOnInit(): void {
     this.getInvoice();
   }
-
+  
   public getInvoice(): void {
     this.serviceInvoice.getInvoice(this.id).subscribe(
       res => {
         this.invoice = res;
-        console.log(this.invoice);
+        this.getProducts()  
       },
       err => {
         console.log(err)
@@ -40,22 +43,14 @@ export class InvoiceImgComponent implements OnInit{
     );
   }
   public getProducts(): void {
-    const items = this.invoice.items;
+    const items: Item[] = this.invoice.items;
     items.forEach( item => {
-      let product = this.getProduct(item.gtin);
-      this.products.push(product);
+      this.productService.getProduct(item.gtin).subscribe(
+        res => {
+          this.products.push(res);
+        }
+      );  
     });
-  }
-
-  public getProduct(gtin: string): any{
-    let product:any; 
-    this.productService.getProduct(gtin).subscribe(
-      res => {
-        product = res
-      }
-    );
-
-    return product;
   }
 
   redirect(url: string[]){

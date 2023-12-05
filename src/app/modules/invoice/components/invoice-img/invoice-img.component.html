@@ -25,9 +25,21 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, harum repellat eveniet, esse quod illo labore praesentium 
             </div>
 
-            <ol  class="productos">
-                <li >{{ products }}</li>
-            </ol>
+            <table>
+                <thead>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio {{products}}</th>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td>{{ product.product }}</td>
+                        <td>{{ invoice.items[0].quantity }}</td>
+                        <td>{{ invoice.items[0].quantity*product.price | currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
             <!-- <h1 class="tituloCliente"> {{ customer.name}}  {{customer.surname }}</h1>
              
             <p class="descripcion">{{ customer.mail }}</p>
