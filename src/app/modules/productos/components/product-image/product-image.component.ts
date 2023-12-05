@@ -44,13 +44,12 @@ export class ProductImageComponent {
   // formulario de actualización
   form = this.formBuilder.group({
     product_id: ["", [Validators.required]],
-    product: ["", [Validators.required, Validators.pattern("^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ ]+$")]],
-    gtin: ["", [Validators.required, Validators.pattern("^[ñA-Z]{3,4}[0-9]{6}[0-9A-Z]{3}$")]],
-    description: ["", [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-    price: ["", [Validators.required]],
-    stock: ["", [Validators.required]],
-    category_id: ["", [Validators.required]],
-    product_image_id: ["", [Validators.required]],
+    gtin: ["", [Validators.required, Validators.pattern('^[0-9]{13}$')]],
+    product: ["", [Validators.required, Validators.pattern("^[a-zA-Z0-9À-ÿ][a-zA-Z0-9À-ÿ ]+$")]],
+    description: ["", [Validators.required]],
+    price: ["", [Validators.required, Validators.pattern("^([0-9]*[.])?[0-9]+")]],
+    stock: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
+    category_id: ["", [Validators.required]]
   });
 
   submitted = false; // indica si se envió el formulario
@@ -137,7 +136,6 @@ export class ProductImageComponent {
     this.submitted = true;
     if(this.form.invalid) return;
     this.submitted = false;
-
     this.ProductService.updateProduct(this.form.value, this.product.product_id).subscribe(
       res => {
         // muestra mensaje de confirmación

@@ -42,7 +42,7 @@
             <p class="descripcion">{{ product.description }}</p>
             <h5 class="gtin">{{ product.gtin }}</h5>
 
-            <span>{{ product.stock }}</span>
+            <span>Stock: {{ product.stock }}</span>
 
             <h3 class="precio">{{ product.price | currency }}</h3>
 
@@ -116,19 +116,19 @@
                     </div>
                     </div>
                 </div>
-      
-                <!-- description  -->
+
+                <!-- stock  -->
       
                 <div class="col-md-6"> 
                     <div class="form-group">
-                    <label for="description">Descripción <span class="color-red">*</span> </label>
-                    <input type="text" class="form-control" formControlName="description" id="description" placeholder="Descrpción del producto..." 
-                        [ngClass]="{'is-invalid': form.controls['description'].errors && submitted}" >
-                    <div *ngIf="form.controls['description'].errors && submitted">
-                        <small class="color-red">Favor de ingresar una descripción válida</small>
+                    <label for="stock">Stock <span class="color-red">*</span> </label>
+                    <input type="text" class="form-control" formControlName="stock" id="stock" placeholder="Stock del producto..." 
+                        [ngClass]="{'is-invalid': form.controls['stock'].errors && submitted}" >
+                    <div *ngIf="form.controls['stock'].errors && submitted">
+                        <small class="color-red">Favor de ingresar una cantidad válida</small>
                     </div>
                     </div>
-                </div> 
+                </div>  
                 
                 <!-- price -->
       
@@ -161,6 +161,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- description  -->
+      
+            <div class="col-md-6"> 
+                <div class="form-group">
+                <label for="description">Descripción <span class="color-red">*</span> </label>
+                <input type="text" class="form-control" formControlName="description" id="description" placeholder="Descrpción del producto..." 
+                    [ngClass]="{'is-invalid': form.controls['description'].errors && submitted}" >
+                <div *ngIf="form.controls['description'].errors && submitted">
+                    <small class="color-red">Favor de ingresar una descripción válida</small>
+                </div>
+                </div>
+            </div> 
   
             <!-- button  -->
             
