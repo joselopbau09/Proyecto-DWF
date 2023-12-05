@@ -56,9 +56,10 @@ export class CartSummaryComponent implements OnChanges{
       this.cartService.getCart(this.rfc).subscribe(productosCarrito => {
         this.productosCarrito = productosCarrito;
       });
-      this.cartService.totalCart.subscribe(total => {
+      this.cartService.getTotal(this.rfc).subscribe(total => {
         this.total = total;
-      })
+        this.cartService.totalCart.next(total);
+      });
       this.cartService.productoEliminado.subscribe(cartId => {
         this.productosCarrito = this.productosCarrito.filter(producto => producto.cart_id !== cartId);
       });
@@ -71,6 +72,9 @@ export class CartSummaryComponent implements OnChanges{
       Current: ${changes[key].currentValue}.
       Previous: ${changes[key].previousValue}`);
     }
+    this.cartService.totalCart.subscribe(total => {
+      this.total = total;
+    });
   }
   
   public calcularTotal():void {
