@@ -78,6 +78,7 @@ export class CartSummaryComponent implements OnChanges{
   }
   
   public calcularTotal():void {
+    this.total = 0;
     this.productosCarrito.forEach( producto => {
       this.total += producto.product.price;
     });
@@ -105,9 +106,7 @@ export class CartSummaryComponent implements OnChanges{
 
     return items;
   }
-  
-  
-  
+
   
   public createInvoicePrueba(): void {
     const items: DtoItem[] = this.construirItems();
