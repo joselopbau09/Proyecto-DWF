@@ -14,8 +14,8 @@
                             </td>
 
                             <td>
-                                Invoice #: {{ invoice.invoice_id }}<br />
-                                Created: {{ invoice.created_at }}<br />
+                                Factura #{{ invoice.invoice_id }}<br />
+                                Creada: {{ invoice.created_at }}<br />
                             </td>
                         </tr>
                     </table>
@@ -43,7 +43,7 @@
             </tr>
 
             <tr class="heading">
-                <td>Payment Method</td>
+                <td>Método de pago</td>
 
                 <td>Online</td>
             </tr>
@@ -68,26 +68,26 @@
 
             <tr class="heading">
                 <td>Item</td>
-
-                <td>Price</td>
+                <td>Total</td>
             </tr>
 
-            <tr class="item">
-                <td>Website design</td>
-
-                <td>$300.00</td>
-            </tr>
-
-            <tr class="item">
-                <td>Hosting (3 months)</td>
-
-                <td>$75.00</td>
-            </tr>
-
-            <tr class="item last">
-                <td>Domain name (1 year)</td>
-
-                <td>$10.00</td>
+            <tr class="item" *ngFor="let item of items">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                GTIN: {{ item.gtin }}<br />
+                                Cantidad: {{ item.quantity }}<br />
+                                Precio Unitario: ${{ item.unit_price }}
+                            </td>
+                            <td>
+                                Subtotal: ${{ item.subtotal }}<br />
+                                Impuestos: ${{ item.taxes }}<br />
+                                Total: ${{ item.total }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
     </div>
