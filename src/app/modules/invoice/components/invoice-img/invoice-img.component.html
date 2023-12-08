@@ -1,58 +1,94 @@
-<div class="card-header">
-    <div class="row">
-        <div class="col-md">
-            <span class="btn-return" (click)="redirect(['invoice'])">
-                <i class="ph cursor ph-arrow-circle-left icon-text-button"></i>
-                Regresar
-            </span>
-        </div>
-        
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img
+                                    src="../../../../../assets/onlineshop.jpg"
+                                    style="width: 100%; max-width: 300px"
+                                    alt = ""
+                                />
+                            </td>
+
+                            <td>
+                                Invoice #: {{ invoice.invoice_id }}<br />
+                                Created: {{ invoice.created_at }}<br />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                {{ customer.address }}<br />
+                                {{ region.region }}<br />
+                                {{ customer.rfc }}
+                            </td>
+
+                            <td>
+                                {{ customer.name }}<br />
+                                {{ customer.surname }}<br />
+                                {{ customer.mail }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>Payment Method</td>
+
+                <td>Online</td>
+            </tr>
+
+            <tr class="subtotal">
+                <td>Subtotal</td>
+
+                <td>${{ invoice.subtotal }}</td>
+            </tr>
+
+            <tr class="taxes">
+                <td>Impuestos</td>
+
+                <td>${{ invoice.taxes }}</td>
+            </tr>
+
+            <tr class="total">
+                <td>Total</td>
+
+                <td>${{ invoice.total }}</td>
+            </tr>
+
+            <tr class="heading">
+                <td>Item</td>
+
+                <td>Price</td>
+            </tr>
+
+            <tr class="item">
+                <td>Website design</td>
+
+                <td>$300.00</td>
+            </tr>
+
+            <tr class="item">
+                <td>Hosting (3 months)</td>
+
+                <td>$75.00</td>
+            </tr>
+
+            <tr class="item last">
+                <td>Domain name (1 year)</td>
+
+                <td>$10.00</td>
+            </tr>
+        </table>
     </div>
-</div>
-<br>
-
-<!-- Contenido del producto -->
-<div class="contenedor">
-    <div class="factura">                
-        <h2>Factura <span class="idFactura"># {{invoice.invoice_id}} </span></h2>
-        <div class="informacionFactura">
-
-            <div class="banco">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quaerat quod omnis
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quaerat quod omnis
-            </div>
-            <div class="descripcion">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, harum repellat eveniet, esse quod illo labore praesentium 
-            </div>
-
-            <table>
-                <thead>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio {{products}}</th>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let product of products">
-                        <td>{{ product.product }}</td>
-                        <td>{{ invoice.items[0].quantity }}</td>
-                        <td>{{ invoice.items[0].quantity*product.price | currency }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- <h1 class="tituloCliente"> {{ customer.name}}  {{customer.surname }}</h1>
-             
-            <p class="descripcion">{{ customer.mail }}</p>
-            <h5 class="gtin">{{ customer.rfc }}</h5>
-
-            <h3 class="precio">{{ region.region }}</h3>
-            <span>{{ customer.address }}</span> -->
-            
-
-
-            <hr>
-
-        </div>
-    </div>
-</div>
-
+</body>

@@ -44,6 +44,7 @@ export class CustomerComponent {
   // primera función que se ejecuta
   ngOnInit(){
     this.getCustomers();
+    this.getRegions();
   }
 
   // CRUD customer

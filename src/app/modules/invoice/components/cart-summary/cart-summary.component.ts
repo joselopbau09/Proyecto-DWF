@@ -56,9 +56,10 @@ export class CartSummaryComponent implements OnChanges{
       this.cartService.getCart(this.rfc).subscribe(productosCarrito => {
         this.productosCarrito = productosCarrito;
       });
-      this.cartService.totalCart.subscribe(total => {
+      this.cartService.getTotal(this.rfc).subscribe(total => {
         this.total = total;
-      })
+        this.cartService.totalCart.next(total);
+      });
       this.cartService.productoEliminado.subscribe(cartId => {
         this.productosCarrito = this.productosCarrito.filter(producto => producto.cart_id !== cartId);
       });
@@ -71,9 +72,13 @@ export class CartSummaryComponent implements OnChanges{
       Current: ${changes[key].currentValue}.
       Previous: ${changes[key].previousValue}`);
     }
+    this.cartService.totalCart.subscribe(total => {
+      this.total = total;
+    });
   }
   
   public calcularTotal():void {
+    this.total = 0;
     this.productosCarrito.forEach( producto => {
       this.total += producto.product.price;
     });
@@ -101,9 +106,7 @@ export class CartSummaryComponent implements OnChanges{
 
     return items;
   }
-  
-  
-  
+
   
   public createInvoicePrueba(): void {
     const items: DtoItem[] = this.construirItems();
@@ -144,48 +147,4 @@ export class CartSummaryComponent implements OnChanges{
       )
     }
     
-    // TODO:Quiza se borraran estos metodos.
-    public deleteCart():void {
-      this.cartService.deleteCart(this.rfc).subscribe(
-        res => {
-          this.productosComprados = this.productosCarrito;
-          const items: DtoItem[] = this.construirItems();
-          const invoice:DtoInvoiceList = {
-            customer: this.customer,
-            items: items,
-            rfc: this.rfc,
-            subtotal: this.total,
-            taxes: 0,
-            total: this.total
-          }
-          this.createInvoice(invoice);
-        }
-      );
-    }
-    public createInvoice(invoice: DtoInvoiceList): void {
-      this.invoiceService.generateInvoice(invoice).subscribe(
-        res => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            toast: true,
-            text: 'Se completo la compra!',
-            background: '#E8F8F8',
-            showConfirmButton: false,
-            timer: 2000
-          });
-        },
-        err => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            toast: true,
-            showConfirmButton: false,
-            text: 'Hubo un erro al realizar la compra:' + err,
-            background: '#F8E8F8',
-            timer: 2000
-          });
-        }
-      )
-    }
-  }
+}
