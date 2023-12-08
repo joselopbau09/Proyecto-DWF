@@ -23,6 +23,7 @@ export class InvoiceImgComponent implements OnInit{
   public customer: any | Customer = new Customer(); 
   public rfc: any | string = ""; // rfc del cliente consultado
   public region: any | Region = new Region(); // datos de la region del cliente
+  public items: Item[] = [];
 
   constructor(
     private route: ActivatedRoute, 
@@ -42,6 +43,8 @@ export class InvoiceImgComponent implements OnInit{
       res => {
         this.invoice = res; // asigna la respuesta de la API a la factura
         this.rfc = this.invoice.rfc;
+        this.items = this.invoice.items;
+        console.log(this.items[0].item_id);
         this.getCustomer();
       },
       err => {
