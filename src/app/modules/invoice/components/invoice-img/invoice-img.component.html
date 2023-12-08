@@ -8,14 +8,14 @@
                             <td class="title">
                                 <img
                                     src="../../../../../assets/onlineshop.jpg"
-                                    style="width: 100%; max-width: 300px"
+                                    style="width: 100%; max-width: 250px"
                                     alt = ""
                                 />
                             </td>
 
-                            <td>
-                                Factura #{{ invoice.invoice_id }}<br />
-                                Creada: {{ invoice.created_at }}<br />
+                            <td class="titulo-factura">
+                                <span>Factura</span> #{{ invoice.invoice_id }}<br />
+                                Fecha: {{ invoice.created_at }}<br />
                             </td>
                         </tr>
                     </table>
@@ -25,17 +25,35 @@
             <tr class="information">
                 <td colspan="2">
                     <table>
+                        <tr class="information-customer">
+                            <span>Detalles cliente:</span> <br>
+                            Dirrecion: {{ customer.address }}, {{ region.region }}<br>
+                            Nombre cliente:{{ customer.name}} {{customer.surname }}<br>
+                            Rfc: {{ customer.rfc }} <br>    
+                            Email: {{ customer.mail }}
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>Item</td>
+                <td></td>
+            </tr>
+
+            <tr class="item" *ngFor="let item of items">
+                <td colspan="2">
+                    <table>
                         <tr>
                             <td>
-                                {{ customer.address }}<br />
-                                {{ region.region }}<br />
-                                {{ customer.rfc }}
+                                GTIN: {{ item.gtin }}<br />
+                                Cantidad: {{ item.quantity }}<br />
+                                Precio Unitario: {{ item.unit_price | currency }}
                             </td>
-
                             <td>
-                                {{ customer.name }}<br />
-                                {{ customer.surname }}<br />
-                                {{ customer.mail }}
+                                Subtotal: {{ item.subtotal | currency }}<br />
+                                Impuestos: {{ item.taxes | currency }}<br />
+                                Total: {{ item.total | currency }}
                             </td>
                         </tr>
                     </table>
@@ -51,44 +69,23 @@
             <tr class="subtotal">
                 <td>Subtotal</td>
 
-                <td>${{ invoice.subtotal }}</td>
+                <td>{{ invoice.subtotal | currency }}</td>
             </tr>
 
             <tr class="taxes">
                 <td>Impuestos</td>
 
-                <td>${{ invoice.taxes }}</td>
+                <td>{{ invoice.taxes | currency }}</td>
             </tr>
 
-            <tr class="total">
+            <tr class="total heading" id="color-h">
                 <td>Total</td>
 
-                <td>${{ invoice.total }}</td>
+                <td>{{ invoice.total | currency }}</td>
             </tr>
 
-            <tr class="heading">
-                <td>Item</td>
-                <td>Total</td>
-            </tr>
+            
 
-            <tr class="item" *ngFor="let item of items">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                GTIN: {{ item.gtin }}<br />
-                                Cantidad: {{ item.quantity }}<br />
-                                Precio Unitario: ${{ item.unit_price }}
-                            </td>
-                            <td>
-                                Subtotal: ${{ item.subtotal }}<br />
-                                Impuestos: ${{ item.taxes }}<br />
-                                Total: ${{ item.total }}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
         </table>
     </div>
 </body>

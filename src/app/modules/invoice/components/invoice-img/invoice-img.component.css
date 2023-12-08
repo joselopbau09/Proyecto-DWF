@@ -1,6 +1,6 @@
 .invoice-box {
     max-width: 800px;
-    margin: auto;
+    margin:  40px auto;
     padding: 30px;
     border: 1px solid #eee;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -8,8 +8,12 @@
     line-height: 24px;
     font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
     color: #555;
+    background-color: white;    
 }
-
+.titulo-factura span {
+    font-size: 23px;
+    font-weight: 600;
+}
 .invoice-box table {
     width: 100%;
     line-height: inherit;
@@ -88,4 +92,15 @@
 
 .invoice-box.rtl table tr td:nth-child(2) {
     text-align: left;
+}
+.information-customer {
+    font-size: 14px;
+    color: #616060;
+}
+
+.information-customer span {
+    font-weight: 600;
+}
+#color-h {
+    background-color: aqua;
 }

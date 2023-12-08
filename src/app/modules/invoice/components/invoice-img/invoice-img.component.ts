@@ -8,6 +8,7 @@ import { InvoiceService } from '../../_services/invoice.service';
 import { CustomerService } from 'src/app/modules/customer/services/customer.service';
 import { RegionService } from 'src/app/modules/customer/services/region.service';
 import Swal from'sweetalert2'; // sweetalert
+import { Item } from '../../_models/item';
 
 
 @Component({
