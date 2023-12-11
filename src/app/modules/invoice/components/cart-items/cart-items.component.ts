@@ -26,8 +26,6 @@ export class CartItemsComponent {
   @Input()
   public productosCarrito!: DtoCartDetails[];
   
-  //TODO: Reconstruir el componente al momento de remover un producto
-  
   constructor(
     private cartService: CartService,
   ) {}

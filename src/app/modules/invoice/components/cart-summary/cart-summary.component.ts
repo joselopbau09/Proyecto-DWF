@@ -126,11 +126,13 @@ export class CartSummaryComponent implements OnChanges{
           position: 'top-end',
           icon: 'success',
           toast: true,
-          text: 'Se completo la compra!',
+          text: '¡Se completó la compra!',
           background: '#E8F8F8',
           showConfirmButton: false,
           timer: 2000
         });
+        this.productosCarrito = [];
+        this.total = 0;
       },
       err => {
         console.log(err)
@@ -139,7 +141,7 @@ export class CartSummaryComponent implements OnChanges{
           icon: 'error',
           toast: true,
           showConfirmButton: false,
-          text:  `'Hubo un erro al realizar la compra: ${err}` ,
+          text:  `Hubo un error al realizar la compra: ${err}` ,
           background: '#F8E8F8',
           timer: 2000
         });
