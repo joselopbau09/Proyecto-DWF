@@ -18,7 +18,6 @@ import { Item } from '../../_models/item';
 })
 export class InvoiceImgComponent implements OnInit{
 
-  public rfc1: string = 'SAAI920101A01';
   public invoice: any | Invoice = new Invoice();
   public id: any;
   public customer: any | Customer = new Customer(); 

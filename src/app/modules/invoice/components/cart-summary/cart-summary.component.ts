@@ -9,6 +9,7 @@ import { DtoCartDetails } from '../../_dtos/dto-cart-details';
 import { DtoInvoiceList } from '../../_dtos/dto-invoice-list';
 import { DtoItem } from '../../_dtos/_dto-item';
 import { Customer, Image } from 'src/app/modules/customer/_models/customer';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -50,6 +51,7 @@ export class CartSummaryComponent implements OnChanges{
   constructor(
     private cartService: CartService,
     private invoiceService: InvoiceService,
+    private router: Router
     ) {}
 
   ngOnInit(){
@@ -133,6 +135,7 @@ export class CartSummaryComponent implements OnChanges{
         });
         this.productosCarrito = [];
         this.total = 0;
+        this.router.navigate(['/compra-exito']);
       },
       err => {
         console.log(err)
