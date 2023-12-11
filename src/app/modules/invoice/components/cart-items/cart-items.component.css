@@ -53,7 +53,6 @@ svg {
     padding: 16px 20px;
     border-radius: 3px;
     position: relative;
-    z-index: 1;
     overflow: hidden;
     display: inline-block;
   }

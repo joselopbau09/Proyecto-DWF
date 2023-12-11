@@ -10,9 +10,11 @@ import { CustomerImageComponent } from './modules/customer/components/customer-i
 import { InvoiceComponent } from './modules/invoice/components/invoice/invoice.component';
 import { CartComponent } from './modules/invoice/components/cart/cart.component';
 import { InvoiceImgComponent } from './modules/invoice/components/invoice-img/invoice-img.component';
+import { InicioComponent } from './modules/inicio/components/inicio/inicio.component';
 
 
 const routes: Routes = [
+  { path: "", component: InicioComponent },
   { path: "category", component: CategoryComponent },
   { path: "product", component: ProductComponent },
   { path: "product/:gtin", component: ProductImageComponent },

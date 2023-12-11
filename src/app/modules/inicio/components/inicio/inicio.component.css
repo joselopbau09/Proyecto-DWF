@@ -1,0 +1,112 @@
+section {
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 80px;
+}
+h2 {
+    text-align: center;
+    font-size: 35px;
+}
+img {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 15px;
+}
+/* Divicion */
+.divicion {
+    display: flex;
+    flex-direction: row;
+    color: #1D1D1D;
+    gap: 36px;
+    align-items: center;
+}
+
+.linea-divicion {
+    width: 100%;
+    height: 2px;
+    background-color: #1D1D1D;
+    opacity: .2;
+}
+
+span {
+    width: 95%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.pasos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 20px 60px ;
+    margin-bottom: 50px;
+    text-align: center;
+    column-gap: 30px;
+}
+.paso-contenido {
+    padding: 35px;
+    background-color: white;
+    box-shadow: 
+        rgba(100, 100, 111, 0.4)
+        0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+.paso-contenido span{ 
+    color: black;
+    font-weight: 500;
+    font-size: 25px;
+}
+.logo {
+    background-color:#8c29fe;
+    padding: 20px;
+    border-radius: 50%;
+    width: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Best selllers */
+.hr-best {
+    height: 20px;
+    background-color: rgb(110, 107, 107);
+    margin: 0 60px;
+}
+.best-sellers {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    margin: 35px 60px;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+}
+.producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    cursor: pointer;
+    border:3px solid transparent;
+    transition: 0.2s;
+}
+.producto:hover {
+    scale: 1.03;
+    border: 3px solid #8c29fe;
+}
+.producto-info {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+}
+p { 
+    font-size: 17px;
+    margin: 0;
+}
+.precio {
+    color: #8c29fe;
+    font-weight: 700;
+}

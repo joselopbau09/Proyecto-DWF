@@ -1,0 +1,40 @@
+<section>
+    <div class="divicion">
+        <div class="linea-divicion"></div> <span> Ordena en tres pasos</span> <div class="linea-divicion"></div>
+    </div>
+    <div class="pasos">
+        <div class="paso-contenido">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle><path d="M13 13h2v-2.99h2.99v-2H15V5.03h-2v2.98h-2.99v2H13V13z"></path><path d="M10 17h8a1 1 0 0 0 .93-.64L21.76 9h-2.14l-2.31 6h-6.64L6.18 4.23A2 2 0 0 0 4.33 3H2v2h2.33l4.75 11.38A1 1 0 0 0 10 17z"></path></svg>
+            </div>
+            <span>Elige un producto</span>
+        </div>
+        <div class="paso-contenido">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg>
+            </div>
+            <span>Programa la entrega</span>
+        </div>
+        <div class="paso-contenido">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="m19.684 5.821-9-3.272A1.998 1.998 0 0 0 8 4.428v6.129A3.953 3.953 0 0 0 6 10c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4V4.428L19 7.7v6.856A3.962 3.962 0 0 0 17 14c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4V7.7c0-.838-.529-1.594-1.316-1.879zM6 16c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zm11 4c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path></svg>
+            </div>
+            <span>Mejora tu día</span>
+        </div>
+    </div>
+
+    <h2 style="margin-bottom: 20px;">Best Sellers</h2>
+    <hr class="hr-best">
+    
+    <div class="best-sellers">
+        <div *ngFor="let producto of productInfo;" class="producto" (click)="showProduct(producto.gtin)">
+            <img [src]="producto.ruta" alt="">
+            <div class="producto-info">
+                <p>{{producto.titulo}}</p>
+                <p class="precio">{{producto.precio | currency}}</p>
+            </div>
+        </div>
+    </div>
+    <hr class="hr-best">
+
+</section>

@@ -14,6 +14,7 @@ import { ProductImageService } from '../../_services/product-image.service';
 import { ProductImage } from '../../_models/productImage';
 import { Category } from '../../_models/category';
 import { DtoCartDetails } from '../../_dtos/dto-cart-details';
+import { DtoProductImage } from '../../_dtos/dto-product-image';
 
 declare var $: any; // jquery
 
@@ -90,6 +91,7 @@ export class ProductImageComponent {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
         this.getImage();
+        console.log(this.product_images)
       },
       err => {
         // muestra mensaje de error
@@ -114,7 +116,6 @@ export class ProductImageComponent {
           product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
         this.product_images = product_images;
-        console.log(this.product_images);
       },
       err => {
         // muestra mensaje de error
@@ -199,12 +200,10 @@ export class ProductImageComponent {
   // customer image
 
   updateProductImage(image: string){
-    let productImage: ProductImage = new ProductImage();
-    productImage.product_id = this.product.product_id;
-    productImage.image = image;
-    let numimages = this.product_images.length
-    productImage.product_image_id = numimages + 1;
-    console.log(productImage.image);
+    let productImage: DtoProductImage = {
+      product_id: this.product.product_id,
+      image: image
+    };
     this.productImageService.uploadProductImage(productImage).subscribe(
       res => {
         // muestra mensaje de confirmación
