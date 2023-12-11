@@ -28,6 +28,7 @@ export class ProductImageComponent {
   public product: any | Product = new Product(); 
   public product_image_id: any | string = ""; 
   public gtin: any | string = "";
+  public ruta:string = "";
   public product_images: ProductImage[] = []; 
   public cantidadProducto: number = 1;
 
@@ -83,6 +84,7 @@ export class ProductImageComponent {
     }
   }
 
+
   // CRUD product
 
   getProduct(){
@@ -90,8 +92,7 @@ export class ProductImageComponent {
       res => {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
-        this.getImage();
-        console.log(this.product_images)
+        this.getImage(res.product_id)
       },
       err => {
         // muestra mensaje de error
@@ -108,14 +109,16 @@ export class ProductImageComponent {
     );
   }
 
-  getImage(){
-    this.productImageService.getProductImage(this.product.product_id).subscribe(
+  getImage(id:number){
+    this.productImageService.getProductImage(id).subscribe(
       (product_images: ProductImage[]) => {
         product_images.forEach(product_image => {
           let image_route = product_image.image;
           product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
         this.product_images = product_images;
+        this.ruta = this.product_images[0].image;
+
       },
       err => {
         // muestra mensaje de error

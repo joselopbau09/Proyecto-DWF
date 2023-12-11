@@ -28,6 +28,10 @@ export class InicioComponent implements OnInit{
 
   ) { }
   ngOnInit(): void {
+    this.getProduct()
+  }
+
+  ngAfterViewInit() {
     this.construirImagenes()
   }
 
@@ -40,20 +44,14 @@ export class InicioComponent implements OnInit{
   }
 
   construirImagenes() {
-    this.getProduct()
-    console.log(this.productImagen)
-    console.log(this.productInfo)
-
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
-        if ( this.productInfo[i].product_id === this.productImagen[j].product_id) {
-          console.log('Hola')
-          this.productInfo[i].ruta = `assets/${this.productImagen[j].image}`
-        }
+        // console.log(info[i].product_id)
+        // if ( this.productInfo[i].product_id === this.productImagen[j].product_id) {
+        //   this.productInfo[i].ruta = `assets/${this.productImagen[j].image}`
+        // }
       }
     }
-
-    console.log(this.productInfo)
   }
 
   getProduct(){
