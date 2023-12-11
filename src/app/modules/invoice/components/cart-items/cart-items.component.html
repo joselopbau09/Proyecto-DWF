@@ -2,7 +2,7 @@
     <h2>Your Cart</h2>
 
     <div *ngFor="let product of productosCarrito" class="product" @fade> 
-        <img src="../../../../../assets/product_logo.jpg" alt="">
+        <img src="../../../../../assets/Imagenes/{{ product.product.gtin }}.jpg" alt="">
         <div class="productInfo">
             <h4>{{product.product.product}}</h4>
             <p>{{product.product.description}}</p>
