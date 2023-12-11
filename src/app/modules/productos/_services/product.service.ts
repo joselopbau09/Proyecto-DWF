@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DtoProductList } from '../_dtos/dto-product-list';
+import { Observable } from 'rxjs';
+import { Product } from '../_models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +26,8 @@ export class ProductService {
     return this.http.delete(this.url + this.route + "/" + id);
   }
   
-  getProduct(gtin: string) {
-    return this.http.get(this.url + this.route + "/" + gtin);
+  getProduct(gtin: string): Observable<Product> {
+    return this.http.get<Product>(this.url + this.route + "/" + gtin);
   }
   
   getActiveProducts() {

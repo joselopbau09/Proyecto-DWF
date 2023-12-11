@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductImage } from '../_models/productImage';
+import { Observable } from 'rxjs';
+import { DtoProductImage } from '../_dtos/dto-product-image';
 
 @Injectable({
     providedIn: 'root'
@@ -12,11 +14,11 @@ import { ProductImage } from '../_models/productImage';
   
     constructor(private http: HttpClient) { }
 
-    getProductImage(product_id: number) {
+    getProductImage(product_id: number): Observable<ProductImage[]> {
       return this.http.get<ProductImage[]>(this.url + this.route + "/" + product_id);
     }
 
-    uploadProductImage(product_image: any) {
+    uploadProductImage(product_image: DtoProductImage) {
       return this.http.post(this.url + this.route, product_image);
     }
     

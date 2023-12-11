@@ -1,0 +1,29 @@
+<div class="summary">
+    <p>Resumen de compra:</p>
+    <!-- Resumen de productos-->
+    <div *ngFor="let producto of productosCarrito" class="producto acomodo" @fade>
+        <b>{{producto.product.product}}</b>
+        <b>{{producto.product.price | currency}}</b>
+    </div>
+
+    <hr>
+
+    <div class="precios acomodo">
+        <p>Subtotal</p>
+        <p>{{total | currency}}</p>
+    </div>
+    <div class="precios acomodo">
+        <p>Taxes</p>
+        <p>-</p>
+    </div>
+
+    <hr>
+
+    <div class="precios acomodo">
+        <b>TOTAL</b>
+        <b>{{total | currency}}</b>
+    </div>
+
+    <button class="btn-compra" (click)="createInvoicePrueba()"><span>PROCEDER AL PAGO</span></button>
+
+</div>

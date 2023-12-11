@@ -1,0 +1,10 @@
+hr {
+    margin-top: 50px;
+    height: 2px;
+}
+.contenedor {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin: 70px;
+    column-gap: 35px;
+}

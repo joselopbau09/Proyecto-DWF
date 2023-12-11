@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="header">
+        <h5>Lista de Facturas</h5>
+        <!-- Boton para lanzar el modal -->
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="table-primary">
+                        <th>No.</th>
+                        <th>RFC</th>
+                        <th>Total</th>
+                        <th>Fecha</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                    <tr *ngFor="let invoice of invoices; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{  this.rfc }}</td>
+                        <td>{{ invoice.total | currency }}</td>
+                        <td>{{ invoice.created_at }}</td>
+                        <td>
+                            <a class="detalles cursor" (click)="showInvoice(invoice.invoice_id)">
+                                Ver detalles
+                            </a>                          
+                        </td>
+                      </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselImagenesComponent } from './components/carousel-imagenes/carousel-imagenes.component';
+import { CompraExitoComponent } from './components/compra-exito/compra-exito.component';
 
 
 
@@ -12,7 +13,8 @@ import { CarouselImagenesComponent } from './components/carousel-imagenes/carous
   declarations: [
     NavbarComponent,
     FooterComponent,
-    CarouselImagenesComponent
+    CarouselImagenesComponent,
+    CompraExitoComponent
   ],
   imports: [
     CommonModule,

@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { CustomerService } from '../../services/customer.service';
-import { DtoCustomer } from 'src/app/modules/shared/interfaces/DtoCustomer';
+import { DtoCustomer } from 'src/app/modules/customer/_dtos/DtoCustomer';
 
 import Swal from'sweetalert2'; // sweetalert
 import { RegionService } from '../../services/region.service';
-import { Region } from 'src/app/modules/shared/interfaces/region';
+import { Region } from 'src/app/modules/customer/_models/region';
 
 declare var $: any; // jquery
 
@@ -44,6 +44,7 @@ export class CustomerComponent {
   // primera función que se ejecuta
   ngOnInit(){
     this.getCustomers();
+    this.getRegions();
   }
 
   // CRUD customer
@@ -200,10 +201,10 @@ export class CustomerComponent {
   
     // modals 
   
-    showModalForm(){
+  showModalForm(){
       this.form.reset();
       this.submitted = false;
       // this.getRegions();
       $("#modalForm").modal("show");
-    }
+  }
 }

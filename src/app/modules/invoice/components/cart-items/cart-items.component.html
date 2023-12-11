@@ -1,0 +1,25 @@
+<div class="userCart">
+    <h2>Your Cart</h2>
+
+    <div *ngFor="let product of productosCarrito" class="product" @fade> 
+        <img src="../../../../../assets/Imagenes/{{ product.product.gtin }}.jpg" alt="">
+        <div class="productInfo">
+            <h4>{{product.product.product}}</h4>
+            <p>{{product.product.description}}</p>
+            <p class="precio">{{product.product.price | currency}}</p>
+            <div class="cantidad">
+                <span></span>
+                <span>{{product.quantity}}</span>
+                <span></span>
+            </div>
+            <div class="remover">
+                <button class="btn-remove" (click)="removerProductoCarrito(product.cart_id)">
+                    <svg fill="#000000" width="20" height="20" viewBox="0 0 16 16">
+                        <path d="M0 14.545L1.455 16 8 9.455 14.545 16 16 14.545 9.455 8 16 1.455 14.545 0 8 6.545 1.455 0 0 1.455 6.545 8z" fill-rule="evenodd"/>
+                    </svg>
+                    <span>    REMOVE</span>
+                </button>
+            </div>
+        </div>
+    </div> 
+</div>
