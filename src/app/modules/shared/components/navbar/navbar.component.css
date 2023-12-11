@@ -46,8 +46,8 @@ li {
     margin: 0 20px;
 }
 .masthead {
-    height: 70vh;
-    min-height: 500px;
+    height: 60vh;
+    min-height: 400px;
     background-image: url('../../../../../assets/zyro-image.jpg');
     background-size: cover;
     background-position: center;
@@ -56,6 +56,7 @@ li {
 .logo {
     display: flex;
     align-items:end;
+    cursor: pointer;
 }
 
 /* Boton carrioto */

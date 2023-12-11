@@ -14,6 +14,7 @@ import { ProductImageService } from '../../_services/product-image.service';
 import { ProductImage } from '../../_models/productImage';
 import { Category } from '../../_models/category';
 import { DtoCartDetails } from '../../_dtos/dto-cart-details';
+import { DtoProductImage } from '../../_dtos/dto-product-image';
 
 declare var $: any; // jquery
 
@@ -27,6 +28,7 @@ export class ProductImageComponent {
   public product: any | Product = new Product(); 
   public product_image_id: any | string = ""; 
   public gtin: any | string = "";
+  public ruta:string = "";
   public product_images: ProductImage[] = []; 
   public cantidadProducto: number = 1;
 
@@ -82,6 +84,7 @@ export class ProductImageComponent {
     }
   }
 
+
   // CRUD product
 
   getProduct(){
@@ -89,7 +92,7 @@ export class ProductImageComponent {
       res => {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
-        this.getImage();
+        this.getImage(res.product_id)
       },
       err => {
         // muestra mensaje de error
@@ -106,15 +109,16 @@ export class ProductImageComponent {
     );
   }
 
-  getImage(){
-    this.productImageService.getProductImage(this.product.product_id).subscribe(
+  getImage(id:number){
+    this.productImageService.getProductImage(id).subscribe(
       (product_images: ProductImage[]) => {
         product_images.forEach(product_image => {
           let image_route = product_image.image;
           product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
         this.product_images = product_images;
-        console.log(this.product_images);
+        this.ruta = this.product_images[0].image;
+
       },
       err => {
         // muestra mensaje de error
@@ -199,12 +203,10 @@ export class ProductImageComponent {
   // customer image
 
   updateProductImage(image: string){
-    let productImage: ProductImage = new ProductImage();
-    productImage.product_id = this.product.product_id;
-    productImage.image = image;
-    let numimages = this.product_images.length
-    productImage.product_image_id = numimages + 1;
-    console.log(productImage.image);
+    let productImage: DtoProductImage = {
+      product_id: this.product.product_id,
+      image: image
+    };
     this.productImageService.uploadProductImage(productImage).subscribe(
       res => {
         // muestra mensaje de confirmación

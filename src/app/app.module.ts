@@ -10,6 +10,7 @@ import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { CustomerModule } from './modules/customer/customer.module';
 import { InvoiceModule } from './modules/invoice/invoice.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InicioModule } from './modules/inicio/inicio.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductosModule,
     NgxPhotoEditorModule,
     CustomerModule,
-    InvoiceModule
+    InvoiceModule,
+    InicioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

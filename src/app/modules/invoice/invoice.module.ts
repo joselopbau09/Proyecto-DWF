@@ -9,6 +9,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartItemsComponent } from './components/cart-items/cart-items.component';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { InvoiceImgComponent } from './components/invoice-img/invoice-img.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { InvoiceImgComponent } from './components/invoice-img/invoice-img.compon
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   exports: [
     CartComponent,
