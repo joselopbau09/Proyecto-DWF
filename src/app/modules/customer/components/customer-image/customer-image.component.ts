@@ -20,12 +20,12 @@ declare var $: any; // jquery
   styleUrls: ['./customer-image.component.css']
 })
 export class CustomerImageComponent {
-  customer: any | Customer = new Customer(); 
+  customer: any | Customer = new Customer(); // cliente
   rfc: any | string = ""; // rfc del cliente consultado
 
 
   regions: Region[] = []; // lista de regiones
-  region: any | Region = new Region(); // datos de la region del cliente
+  region: any | Region = new Region(); // datos de la región del cliente
 
   // formulario de actualización
   form = this.formBuilder.group({
@@ -38,7 +38,7 @@ export class CustomerImageComponent {
   });
 
   submitted = false; // indica si se envió el formulario
-  customerImage: CustomerImage[] = [];
+  customerImage: CustomerImage[] = []; // lista de imágenes de perfil del cliente
 
   constructor(
     private customerService: CustomerService, 

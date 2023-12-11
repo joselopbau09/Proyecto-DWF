@@ -85,7 +85,6 @@ export class CartSummaryComponent implements OnChanges{
       this.total += producto.product.price;
     });
   }
-
   
   public construirItems(): DtoItem[]{
     const items: DtoItem[] = [];
@@ -108,7 +107,6 @@ export class CartSummaryComponent implements OnChanges{
 
     return items;
   }
-
   
   public createInvoicePrueba(): void {
     const items: DtoItem[] = this.construirItems();
@@ -149,7 +147,7 @@ export class CartSummaryComponent implements OnChanges{
           timer: 2000
         });
       }
-      )
-    }
+    );
+  }
     
 }

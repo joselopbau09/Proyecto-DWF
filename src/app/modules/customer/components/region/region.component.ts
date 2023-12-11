@@ -57,7 +57,6 @@ export class RegionComponent {
     );
   }
 
-
   disableRegion(id: number){
     this.regionService.disableRegion(id).subscribe(
       res => {
@@ -221,6 +220,5 @@ export class RegionComponent {
     this.submitted = false;
     $("#modalForm").modal("show");
   }
-
 
 }

@@ -18,8 +18,8 @@ declare var $: any; // jquery
 })
 export class ProductComponent {
 
-  products: DtoProductList[] = []; // lista de clientes
-  categories: Category[] = []; // lista de regiones
+  products: DtoProductList[] = []; // lista de productos
+  categories: Category[] = []; // lista de categorías
 
   // formulario de registro
   form = this.formBuilder.group({
@@ -168,12 +168,9 @@ export class ProductComponent {
     );
   }
 
-
-
   showProduct(gtin: string){
     this.router.navigate(['product/' + gtin]);
   }
-
 
   getCategories(){
     this.categoryService.getCategories().subscribe(

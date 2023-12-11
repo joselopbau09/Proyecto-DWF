@@ -28,7 +28,7 @@ export class ProductImageComponent {
   public product: any | Product = new Product(); 
   public product_image_id: any | string = ""; 
   public gtin: any | string = "";
-  public ruta:string = "";
+  public ruta: string = "";
   public product_images: ProductImage[] = []; 
   public cantidadProducto: number = 1;
 
@@ -83,7 +83,6 @@ export class ProductImageComponent {
       });
     }
   }
-
 
   // CRUD product
 
@@ -219,7 +218,7 @@ export class ProductImageComponent {
           showConfirmButton: false,
           timer: 2000
         });
-        this.getProduct(); // consulta el cliente con los cambios realizados
+        this.getProduct(); // consulta el producto con los cambios realizados
     
         $("#modalForm").modal("hide"); // oculta el modal de registro
       },
@@ -265,7 +264,7 @@ export class ProductImageComponent {
   getCategory(id: number){
     this.categoryService.getCategory(id).subscribe(
       res => {
-        this.category = res; // asigna la respuesta de la API a la lista de regiones
+        this.category = res; // asigna la respuesta de la API a la lista de categorías
       },
       err => {
         // muestra mensaje de error
@@ -289,7 +288,6 @@ export class ProductImageComponent {
       resizeToWidth: 360,
       resizeToHeight: 360,
     }).subscribe(data => {
-      //console.log(data);
       this.updateProductImage(data.base64!);
     });
   }
@@ -303,6 +301,7 @@ export class ProductImageComponent {
     this.cantidadProducto += 1
   }
 
+  // Reducir la cantidad de un producto en el carrito
   public reducirCantidad(): void {
     if (this.cantidadProducto === 1) {
       return
@@ -310,6 +309,7 @@ export class ProductImageComponent {
     this.cantidadProducto -= 1
   }
 
+  // Agregar el producto al carrito
   public agregarAlCarrito(): void {
     this.productoParaCarrito = {
       gtin: this.product.gtin,

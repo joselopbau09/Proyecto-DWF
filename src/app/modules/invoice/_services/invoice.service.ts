@@ -17,12 +17,10 @@ export class InvoiceService {
     return this.http.get<Invoice>(`${this.url}/${id}/items`);
   }
 
-  /* REQUERIMIENTO 4. Implementar servicio Invoice - función getInvoices() */
   getInvoices(rfc: string): Observable<DtoInvoiceList[]> {
     return this.http.get<DtoInvoiceList[]>(`${this.url}/${rfc}`);
   }
 
-  /* REQUERIMIENTO 4. Implementar servicio Invoice - función generateInvoice() */
   generateInvoice(invoice: DtoInvoiceList) {
     return this.http.post(`${this.url}/SAAI920101A01`, invoice);
   }

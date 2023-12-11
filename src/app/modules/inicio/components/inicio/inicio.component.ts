@@ -14,12 +14,11 @@ import { ProductImageService } from 'src/app/modules/productos/_services/product
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit{
-  public product: any[] | Product[] = []; 
-  public gtins:string[]= ["1235587890131", "1234565890147", "1234567890131", "1234567490131"];
-  public productInfo:ImageInfo[]= [];
-  public productImagen:ProductImage[] = [];
-  
 
+  public product: any[] | Product[] = []; 
+  public gtins: string[]= ["1235587890131", "1234565890147", "1234567890131", "1234567490131"];
+  public productInfo: ImageInfo[]= [];
+  public productImagen: ProductImage[] = [];
 
   constructor(
     private ProductService: ProductService, 
@@ -27,6 +26,7 @@ export class InicioComponent implements OnInit{
     private router: Router, // redirigir a otro componente
 
   ) { }
+  
   ngOnInit(): void {
     this.getProduct()
   }

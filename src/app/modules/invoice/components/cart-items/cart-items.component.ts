@@ -30,26 +30,26 @@ export class CartItemsComponent {
     private cartService: CartService,
   ) {}
   
-public removerProductoCarrito(cartId:number): void {
-  this.cartService.removeFromCart(cartId).subscribe(
-    res => {
-      this.productosCarrito = this.productosCarrito.filter( producto => producto.cart_id !== cartId);
-      this.cartService.productoEliminado.next(cartId);
-      this.cartService.getTotal(this.rfc).subscribe(nuevoTotal => {
-        this.cartService.totalCart.next(nuevoTotal);
-      });
-    }
-  );
-  Swal.fire({
-    position: 'top-end',
-    icon: 'info',
-    toast: true, 
-    text: 'Se ha eliminado el producto del carrito',
-    showConfirmButton: false,
-    timerProgressBar: true,
-    background: '#eef5ed',
-    timer: 2000
-  });
-}
+  public removerProductoCarrito(cartId:number): void {
+    this.cartService.removeFromCart(cartId).subscribe(
+      res => {
+        this.productosCarrito = this.productosCarrito.filter( producto => producto.cart_id !== cartId);
+        this.cartService.productoEliminado.next(cartId);
+        this.cartService.getTotal(this.rfc).subscribe(nuevoTotal => {
+          this.cartService.totalCart.next(nuevoTotal);
+        });
+      }
+    );
+    Swal.fire({
+      position: 'top-end',
+      icon: 'info',
+      toast: true, 
+      text: 'Se ha eliminado el producto del carrito',
+      showConfirmButton: false,
+      timerProgressBar: true,
+      background: '#eef5ed',
+      timer: 2000
+    });
+  }
   
 }

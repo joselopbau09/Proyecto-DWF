@@ -18,12 +18,12 @@ import { Item } from '../../_models/item';
 })
 export class InvoiceImgComponent implements OnInit{
 
-  public invoice: any | Invoice = new Invoice();
-  public id: any;
-  public customer: any | Customer = new Customer(); 
+  public invoice: any | Invoice = new Invoice(); // factura
+  public id: any; // id de la factura
+  public customer: any | Customer = new Customer(); // cliente asociado a la factura
   public rfc: any | string = ""; // rfc del cliente consultado
   public region: any | Region = new Region(); // datos de la region del cliente
-  public items: Item[] = [];
+  public items: Item[] = []; // lista de items en la factura
 
   constructor(
     private route: ActivatedRoute, 
@@ -34,7 +34,6 @@ export class InvoiceImgComponent implements OnInit{
   
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    //console.log(this.id);
     this.getInvoice();
   }
 

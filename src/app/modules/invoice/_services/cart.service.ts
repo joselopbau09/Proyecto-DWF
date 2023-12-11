@@ -25,12 +25,10 @@ export class CartService {
     return this.http.delete(this.url + "/" + id);
   }
 
-  /* REQUERIMIENTO 4. Implementar servicio Cart - función getCart() */
   getCart(rfc: string) {
     return this.http.get<DtoCartDetails[]>(`${this.url}/${rfc}`);
   }
 
-  /* REQUERIMIENTO 4. Implementar servicio Cart - función removeFromCart() */
   deleteCart(rfc: string) {
     return this.http.delete(this.url + "/clear/" + rfc);
   }

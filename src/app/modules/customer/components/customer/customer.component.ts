@@ -18,9 +18,9 @@ declare var $: any; // jquery
 })
 export class CustomerComponent {
   
-  public customers: DtoCustomer[] = [];
+  public customers: DtoCustomer[] = []; // lista de clientes
   
-  regions:Region[] = [];
+  regions: Region[] = []; // lista de regiones
 
   public submitted = false; // indica si se envió el formulario
 
@@ -48,7 +48,6 @@ export class CustomerComponent {
   }
 
   // CRUD customer
-
 
   public disableCustomer(id: number): void {
     this.customerService.disableCustomer(id).subscribe(
@@ -132,7 +131,6 @@ export class CustomerComponent {
     );
   }
 
-
   public onSubmit(): void{
     // valida el formulario
     this.submitted = true;
@@ -171,13 +169,11 @@ export class CustomerComponent {
     );
   }
 
-
   public showCustomer(rfc: string): void{
     this.router.navigate(['customer/' + rfc]);
   }
 
-
-    // catalogues
+  // catalogues
 
   public getRegions(): void{
       this.regionService.getRegions().subscribe(
@@ -199,7 +195,7 @@ export class CustomerComponent {
       );
   }
   
-    // modals 
+  // modals 
   
   showModalForm(){
       this.form.reset();
