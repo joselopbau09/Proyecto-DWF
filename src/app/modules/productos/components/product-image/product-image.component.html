@@ -22,8 +22,19 @@
     <div class="producto">
 
         <div class="imagenProducto">
-            <!-- TODO: Carrusel de imagenes -->
-            <img [src]="ruta" alt="">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <img [src]="ruta" alt="">
+                </div>
+                <a class="carousel-control-prev" (click)="prevImage()" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" (click)="nextImage()" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
             <div class="edit-product-image text-center">
                 <label for="uploadImage" class="cursor-pointer">
                     <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">

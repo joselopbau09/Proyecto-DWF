@@ -31,6 +31,7 @@ export class ProductImageComponent {
   public ruta: string = "";
   public product_images: ProductImage[] = []; 
   public cantidadProducto: number = 1;
+  public numImagen = 0;
 
   productoParaCarrito: DtoCartDetails = {
     gtin: '',
@@ -348,5 +349,25 @@ export class ProductImageComponent {
         });
       }
     );
+  }
+
+  prevImage() {
+    if(this.numImagen > 0) {
+      this.numImagen = this.numImagen - 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    } else {
+      this.numImagen = this.product_images.length - 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    }
+  }
+
+  nextImage() {
+    if(this.numImagen < this.product_images.length - 1) {
+      this.numImagen = this.numImagen + 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    } else {
+      this.numImagen = 0;
+      this.ruta = this.product_images[this.numImagen].image;
+    }
   }
 }
