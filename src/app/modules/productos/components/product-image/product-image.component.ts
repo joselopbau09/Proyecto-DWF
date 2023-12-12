@@ -116,8 +116,12 @@ export class ProductImageComponent {
           product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
         this.product_images = product_images;
-        this.ruta = this.product_images[0].image;
-
+        if(this.product_images.length === 0) {
+          const image_src = '../../../../../assets/Imagenes/' + this.gtin + '.jpg';
+          this.ruta = image_src;
+        } else {
+          this.ruta = this.product_images[0].image;
+        }
       },
       err => {
         // muestra mensaje de error
