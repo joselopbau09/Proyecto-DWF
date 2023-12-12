@@ -72,3 +72,18 @@ svg {
     align-items: center;
     
 }
+
+.carousel-control-prev-icon {
+    background-color: white;
+    color: black;
+}
+
+.carousel-control-next-icon {
+    background-color: white;
+    color: black;
+}
+
+.sr-only {
+    background-color: white;
+    color: black;
+}

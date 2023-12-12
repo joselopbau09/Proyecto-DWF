@@ -63,7 +63,7 @@ export class InicioComponent implements OnInit{
           let imagenInfo:ImageInfo = {
             titulo: res.product,
             precio:res.price,
-            ruta: '',
+            ruta: '../../../../../assets/Imagenes/' + res.gtin + '.jpg',
             gtin: res.gtin,
             product_id: res.product_id
           }

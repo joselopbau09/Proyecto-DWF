@@ -31,6 +31,7 @@ export class ProductImageComponent {
   public ruta: string = "";
   public product_images: ProductImage[] = []; 
   public cantidadProducto: number = 1;
+  public numImagen = 0;
 
   productoParaCarrito: DtoCartDetails = {
     gtin: '',
@@ -116,8 +117,12 @@ export class ProductImageComponent {
           product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
         this.product_images = product_images;
-        this.ruta = this.product_images[0].image;
-
+        if(this.product_images.length === 0) {
+          const image_src = '../../../../../assets/Imagenes/' + this.gtin + '.jpg';
+          this.ruta = image_src;
+        } else {
+          this.ruta = this.product_images[0].image;
+        }
       },
       err => {
         // muestra mensaje de error
@@ -355,6 +360,26 @@ export class ProductImageComponent {
         background: '#F8E8F8',
         timer: 2000
       });
+    }
+  }
+
+  prevImage() {
+    if(this.numImagen > 0) {
+      this.numImagen = this.numImagen - 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    } else {
+      this.numImagen = this.product_images.length - 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    }
+  }
+
+  nextImage() {
+    if(this.numImagen < this.product_images.length - 1) {
+      this.numImagen = this.numImagen + 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    } else {
+      this.numImagen = 0;
+      this.ruta = this.product_images[this.numImagen].image;
     }
   }
 }
