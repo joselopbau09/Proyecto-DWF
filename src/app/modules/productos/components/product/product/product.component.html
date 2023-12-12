@@ -1,64 +1,64 @@
 <div class="container">
-    <div class="card">
-        <div class="card-header">
-            
-            <h5>Lista de Productos</h5>
-            <!-- Boton para lanzar el modal -->
-            <button type="button" class="btn btn-primary" (click)="showModalForm()" data-toggle="modal" data-target="#modalForm">
-              <i class="ph ph-plus-circle icon-text-button"></i>
-              Nuevo Producto
-            </button>
-        </div>
+  <div class="header">
+      
+      <h4>Lista de Productos</h4>
+      <!-- Boton para lanzar el modal -->
+      <button type="button" class="btn-agregar" (click)="showModalForm()">
+        Nuevo Producto
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+    </button>
+  </div>
+  <div class="card">
 
+      <div class="card-body" style="text-align: center;">
+          <table class="table">
+              <thead>
+                  <tr class="table-primary">
+                      <th>No.</th>
+                      <th>GTIN</th>
+                      <th>Producto</th>
+                      <th>Precio</th>
+                      <th>Estatus</th>
+                      <th>Más</th>
+                  </tr>    
+              </thead>
 
-        <div class="card-body" style="text-align: center;">
-            <table class="table">
-                <thead>
-                    <tr class="table-primary">
-                        <th>No.</th>
-                        <th>GTIN</th>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Estatus</th>
-                        <th>Más</th>
-                    </tr>    
-                </thead>
-
-                <tbody>
-                  <tr *ngFor="let product of products; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ product.gtin }}</td>
-                    <td>{{ product.product }}</td>
-                    <td>{{ product.price | currency: 'USD' }}</td>
-                    <td>
-                      <div class="td-status"
-                      [ngClass]="{'td-status-enable': product.status == 1, 'td-status-disable': product.status == 0}" >
-                        {{ product.status == 0 ? "Inactivo" : "Activo" }}
-                      </div>
-                    </td>
-                    <td>
-                      <div class="btn">
-                        <button class="btn" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                          <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
-                        </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" (click)="showProduct(product.gtin)">
-                                <i class="ph ph-note-pencil icon-text-ul"></i>Ver detalles
-                            </a>
-                            <a *ngIf="product.status == 0" class="dropdown-item enable-item" (click)="enableProduct(product.product_id)">
-                              <i class="ph ph-check-circle icon-text-ul"></i>Activar
-                            </a>
-                            <a *ngIf="product.status == 1" class="dropdown-item disable-item" (click)="disableProduct(product.product_id)">
-                              <i class="ph ph-x-circle icon-text-ul"></i> Desactivar
-                            </a>
-                          </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-            </table>
-        </div>    
-    </div>    
+              <tbody>
+                <tr *ngFor="let product of products; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ product.gtin }}</td>
+                  <td>{{ product.product }}</td>
+                  <td>{{ product.price | currency: 'USD' }}</td>
+                  <td>
+                    <div class="td-status"
+                    [ngClass]="{'td-status-enable': product.status == 1, 'td-status-disable': product.status == 0}" >
+                      {{ product.status == 0 ? "Inactivo" : "Activo" }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                      </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" (click)="showProduct(product.gtin)">
+                              <i class="ph ph-note-pencil icon-text-ul"></i>Ver detalles
+                          </a>
+                          <a *ngIf="product.status == 0" class="dropdown-item enable-item" (click)="enableProduct(product.product_id)">
+                            <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                          </a>
+                          <a *ngIf="product.status == 1" class="dropdown-item disable-item" (click)="disableProduct(product.product_id)">
+                            <i class="ph ph-x-circle icon-text-ul"></i> Desactivar
+                          </a>
+                        </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              
+          </table>
+      </div>    
+  </div>    
 </div> 
 
 <!-- Modal -->

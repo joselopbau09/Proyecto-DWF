@@ -6,10 +6,15 @@ import { ProductService } from '../../_services/product.service';
 import Swal from'sweetalert2'; // sweetalert
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
+
+import { CategoryService } from '../../_services/category.service';
+import { CartService } from '../../_services/cart.service';
 import { ProductImageService } from '../../_services/product-image.service';
+
 import { ProductImage } from '../../_models/productImage';
 import { Category } from '../../_models/category';
-import { CategoryService } from '../../_services/category.service';
+import { DtoCartDetails } from '../../_dtos/dto-cart-details';
+import { DtoProductImage } from '../../_dtos/dto-product-image';
 
 declare var $: any; // jquery
 
@@ -20,11 +25,21 @@ declare var $: any; // jquery
 })
 export class ProductImageComponent {
 
-  product: any | Product = new Product(); 
-  product_image_id: any | string = ""; 
-  gtin: any | string = "";
-  product_images: ProductImage[] = []; 
+  public product: any | Product = new Product(); 
+  public product_image_id: any | string = ""; 
+  public gtin: any | string = "";
+  public ruta: string = "";
+  public product_images: ProductImage[] = []; 
+  public cantidadProducto: number = 1;
+  public numImagen = 0;
 
+  productoParaCarrito: DtoCartDetails = {
+    gtin: '',
+    image: '',
+    product: new Product,
+    quantity: 0,
+    rfc: ''
+  };
 
   categories: Category[] = []; // lista de categorías
   category: any | Category = new Category(); // datos de la categoría del producto
@@ -32,13 +47,12 @@ export class ProductImageComponent {
   // formulario de actualización
   form = this.formBuilder.group({
     product_id: ["", [Validators.required]],
-    product: ["", [Validators.required, Validators.pattern("^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ ]+$")]],
-    gtin: ["", [Validators.required, Validators.pattern("^[ñA-Z]{3,4}[0-9]{6}[0-9A-Z]{3}$")]],
-    description: ["", [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-    price: ["", [Validators.required]],
-    stock: ["", [Validators.required]],
-    category_id: ["", [Validators.required]],
-    product_image_id: ["", [Validators.required]],
+    gtin: ["", [Validators.required, Validators.pattern('^[0-9]{13}$')]],
+    product: ["", [Validators.required, Validators.pattern("^[a-zA-Z0-9À-ÿ][a-zA-Z0-9À-ÿ ]+$")]],
+    description: ["", [Validators.required]],
+    price: ["", [Validators.required, Validators.pattern("^([0-9]*[.])?[0-9]+")]],
+    stock: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
+    category_id: ["", [Validators.required]]
   });
 
   submitted = false; // indica si se envió el formulario
@@ -46,8 +60,9 @@ export class ProductImageComponent {
   constructor(
     private ProductService: ProductService, 
     private productImageService: ProductImageService, 
-    private formBuilder: FormBuilder, 
     private categoryService: CategoryService, 
+    private cartService: CartService,
+    private formBuilder: FormBuilder, 
     private route: ActivatedRoute, 
     private router: Router,
     private service: NgxPhotoEditorService
@@ -77,7 +92,7 @@ export class ProductImageComponent {
       res => {
         this.product = res; // asigna la respuesta de la API a la variable de cliente
         this.getCategory(this.product.category_id);
-        this.getImage();
+        this.getImage(res.product_id)
       },
       err => {
         // muestra mensaje de error
@@ -94,15 +109,20 @@ export class ProductImageComponent {
     );
   }
 
-  getImage(){
-    console.log(this.product_images);
-    this.productImageService.getProductImage(this.product.product_id).subscribe(
+  getImage(id:number){
+    this.productImageService.getProductImage(id).subscribe(
       (product_images: ProductImage[]) => {
         product_images.forEach(product_image => {
           let image_route = product_image.image;
           product_image.image = 'assets/imagenes/' + image_route; // URL completa de la imagen
         });
         this.product_images = product_images;
+        if(this.product_images.length === 0) {
+          const image_src = '../../../../../assets/Imagenes/' + this.gtin + '.jpg';
+          this.ruta = image_src;
+        } else {
+          this.ruta = this.product_images[0].image;
+        }
       },
       err => {
         // muestra mensaje de error
@@ -124,7 +144,6 @@ export class ProductImageComponent {
     this.submitted = true;
     if(this.form.invalid) return;
     this.submitted = false;
-
     this.ProductService.updateProduct(this.form.value, this.product.product_id).subscribe(
       res => {
         // muestra mensaje de confirmación
@@ -188,12 +207,10 @@ export class ProductImageComponent {
   // customer image
 
   updateProductImage(image: string){
-    let productImage: ProductImage = new ProductImage();
-    productImage.product_id = this.product.product_id;
-    productImage.image = image;
-    let numimages = this.product_images.length
-    productImage.product_image_id = numimages + 1;
-    console.log(productImage.image);
+    let productImage: DtoProductImage = {
+      product_id: this.product.product_id,
+      image: image
+    };
     this.productImageService.uploadProductImage(productImage).subscribe(
       res => {
         // muestra mensaje de confirmación
@@ -206,7 +223,7 @@ export class ProductImageComponent {
           showConfirmButton: false,
           timer: 2000
         });
-        this.getProduct(); // consulta el cliente con los cambios realizados
+        this.getProduct(); // consulta el producto con los cambios realizados
     
         $("#modalForm").modal("hide"); // oculta el modal de registro
       },
@@ -252,7 +269,7 @@ export class ProductImageComponent {
   getCategory(id: number){
     this.categoryService.getCategory(id).subscribe(
       res => {
-        this.category = res; // asigna la respuesta de la API a la lista de regiones
+        this.category = res; // asigna la respuesta de la API a la lista de categorías
       },
       err => {
         // muestra mensaje de error
@@ -276,12 +293,93 @@ export class ProductImageComponent {
       resizeToWidth: 360,
       resizeToHeight: 360,
     }).subscribe(data => {
-      //console.log(data);
       this.updateProductImage(data.base64!);
     });
   }
 
   redirect(url: string[]){
     this.router.navigate(url);
+  }
+
+  // Agregar al carrito
+  public aumentarCantidad(): void {
+    this.cantidadProducto += 1
+  }
+
+  // Reducir la cantidad de un producto en el carrito
+  public reducirCantidad(): void {
+    if (this.cantidadProducto === 1) {
+      return
+    }
+    this.cantidadProducto -= 1
+  }
+
+  // Agregar el producto al carrito
+  public agregarAlCarrito(): void {
+    if(this.product.status != 0){
+      this.productoParaCarrito = {
+        gtin: this.product.gtin,
+        image: 'String',
+        product: this.product,
+        quantity: this.cantidadProducto,
+        rfc: 'SAAI920101A01'
+      }
+      this.cartService.addToCart(this.productoParaCarrito).subscribe(
+        res => {
+          // muestra mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'Producto agregado al carrito!',
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        },
+        err => {
+          // muestra mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: 'No Se pudo agregar al carrito',
+            background: '#F8E8F8',
+            timer: 2000
+          });
+        }
+      );
+    }else{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        toast: true,
+        showConfirmButton: false,
+        text: 'El producto está desactivado, no se puede agregar al carrito',
+        background: '#F8E8F8',
+        timer: 2000
+      });
+    }
+  }
+
+  prevImage() {
+    if(this.numImagen > 0) {
+      this.numImagen = this.numImagen - 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    } else {
+      this.numImagen = this.product_images.length - 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    }
+  }
+
+  nextImage() {
+    if(this.numImagen < this.product_images.length - 1) {
+      this.numImagen = this.numImagen + 1;
+      this.ruta = this.product_images[this.numImagen].image;
+    } else {
+      this.numImagen = 0;
+      this.ruta = this.product_images[this.numImagen].image;
+    }
   }
 }

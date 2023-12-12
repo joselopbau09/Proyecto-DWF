@@ -1,8 +1,9 @@
+<!-- Header de links -->
 <div class="card-header">
     <div class="row">
         <div class="col-md">
             <span class="btn-return" (click)="redirect(['product'])">
-                <i class="ph ph-arrow-circle-left icon-text-button"></i>
+                <i class="ph cursor ph-arrow-circle-left icon-text-button"></i>
                 Regresar
             </span>
         </div>
@@ -15,108 +16,66 @@
         </div>
     </div>
 </div>
-<br>
 
-<div class="card-body">
-    <div class="row">
+<!-- Contenido del producto -->
+<div class="contenedor">
+    <div class="producto">
 
-        <!-- Product image  -->
-    
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body-product text-center">
-                    <div id="carouselExampleIndicators" #mycarouselControls class="carousel slide" data-ride="carousel" data-interval=false>
-                        <div class="carousel-inner">                
-                                <ul *ngFor="let image of product_images">
-                                    <li><img src={{image.image}} class="d-block w-100 carousel-pic" alt="..."></li>                                  
-                                </ul>
-                        </div>
-                    </div>
+        <div class="imagenProducto">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <img [src]="ruta" alt="">
                 </div>
-                <div class="edit-product-image text-center">
-                    <label for="uploadImage" class="cursor-pointer">
-                        <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
-                        <i class="ph ph-note-pencil icon-text-button"></i>
-                        Editar imagen
-                    </label>
-                </div>
+                <a class="carousel-control-prev" (click)="prevImage()" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" (click)="nextImage()" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+            <div class="edit-product-image text-center">
+                <label for="uploadImage" class="cursor-pointer">
+                    <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
+                    <i class="ph ph-note-pencil icon-text-button"></i>
+                    Editar imagen
+                </label>
             </div>
         </div>
-    
-        <!-- product data  -->
-    
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body-product">
+                
 
-                    <!-- product  -->
+                
 
-                    <div class="product-title">
-                        {{ product.product }}
-                    </div>
+        <div class="informacionProducto">
+            <h1 class="tituloProducto">{{product.product}}</h1>
+             
+            <p class="descripcion">{{ product.description }}</p>
+            <h5 class="gtin">{{ product.gtin }}</h5>
 
-                    <table class="table">
-                        <tbody>
-                            
-                            <!-- GTIN -->
-                            <tr>
-                                <th class="col-md-4">GTIN</th>
-                                <td>{{ product.gtin }}</td>
-                            </tr>
-                                
-                            <!-- product_id  -->
-                            <tr>
-                                <th class="col-md-4">ID del producto</th>
-                                <td>{{ product.product_id }}</td>
-                            </tr>
-                                
-                            <!-- Description  -->
-                            <tr>
-                                <th class="col-md-4">Descripción</th>
-                                <td>{{ product.description }}</td>
-                            </tr>
-                            
-                            <!-- price  -->
-                            <tr>
-                                <th class="col-md-4">Precio</th>
-                                <td>{{ product.price }}</td>
-                            </tr>
+            <span>Stock: {{ product.stock }}</span>
 
-                            <!-- stock  -->
-                            <tr>
-                                <th class="col-md-4">Stock</th>
-                                <td>{{ product.stock }}</td>
-                            </tr>
+            <h3 class="precio">{{ product.price | currency }}</h3>
 
-                            <!-- category_id  -->
-                            <tr>
-                                <th class="col-md-4">ID de la categoría</th>
-                                <td>{{ product.category_id }}</td>
-                            </tr>
-
-                            <!-- status  -->
-                            <tr>
-                                <th class="col-md-4">Status</th>
-                                <td>{{ product.status == 0 ? 'Inactivo' : 'Activo'}}</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
+            <div class="cantidadProductos">
+                <svg (click)="reducirCantidad()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M5 11h14v2H5z"></path></svg>
+                {{cantidadProducto}}
+                <svg (click)="aumentarCantidad()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
             </div>
+
+            <hr>
+
+            <button class="btn-compra" (click)="agregarAlCarrito()">AGREGAR AL CARRITO</button>
         </div>
-    
     </div>
 </div>
 
-
-<!-- Modal form  -->
-  
+<!-- Modal --> 
 <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Actualizar producto </h5>
+          <h4 class="modal-title">Actualizar producto </h4>
           <button type="button" class="modal-close-button" data-bs-dismiss="modal" aria-label="Close">
             <span class="modal-close-button-x">&times;</span>
           </button>
@@ -168,19 +127,19 @@
                     </div>
                     </div>
                 </div>
-      
-                <!-- description  -->
+
+                <!-- stock  -->
       
                 <div class="col-md-6"> 
                     <div class="form-group">
-                    <label for="description">Descripción <span class="color-red">*</span> </label>
-                    <input type="text" class="form-control" formControlName="description" id="description" placeholder="Descrpción del producto..." 
-                        [ngClass]="{'is-invalid': form.controls['description'].errors && submitted}" >
-                    <div *ngIf="form.controls['description'].errors && submitted">
-                        <small class="color-red">Favor de ingresar una descripción válida</small>
+                    <label for="stock">Stock <span class="color-red">*</span> </label>
+                    <input type="text" class="form-control" formControlName="stock" id="stock" placeholder="Stock del producto..." 
+                        [ngClass]="{'is-invalid': form.controls['stock'].errors && submitted}" >
+                    <div *ngIf="form.controls['stock'].errors && submitted">
+                        <small class="color-red">Favor de ingresar una cantidad válida</small>
                     </div>
                     </div>
-                </div> 
+                </div>  
                 
                 <!-- price -->
       
@@ -213,6 +172,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- description  -->
+      
+            <div class="col-md-6"> 
+                <div class="form-group">
+                <label for="description">Descripción <span class="color-red">*</span> </label>
+                <input type="text" class="form-control" formControlName="description" id="description" placeholder="Descrpción del producto..." 
+                    [ngClass]="{'is-invalid': form.controls['description'].errors && submitted}" >
+                <div *ngIf="form.controls['description'].errors && submitted">
+                    <small class="color-red">Favor de ingresar una descripción válida</small>
+                </div>
+                </div>
+            </div> 
   
             <!-- button  -->
             
@@ -224,4 +196,4 @@
         </div>
       </div>
     </div>
-  </div>
+</div>

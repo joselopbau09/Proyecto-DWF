@@ -1,0 +1,84 @@
+.cursor {
+    cursor: pointer;
+}
+.edit-customer{
+    color: blue;
+    float: right;
+    margin-right: 16px;
+}
+
+.edit-customer-image{
+    color: blue;
+    margin-bottom: 16px;
+}
+
+h1, h3, h5 {
+    color: white;
+}
+.contenedor {
+    display: grid;
+    place-items: center;
+}
+.cliente {
+    margin: 80px 0;
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    -webkit-box-shadow: -18px -15px 39px -28px rgba(0,0,0,0.75);
+    -moz-box-shadow: -18px -15px 39px -28px rgba(0,0,0,0.75);
+    box-shadow: -18px -15px 39px -28px rgba(0,0,0,0.75);
+    width: 75%;
+}
+.imagenCliente {
+    display: grid;
+    place-items: center;
+    padding: 30px;
+    background-color: white;
+}
+.informacionCliente {
+    color: white;
+    padding: 30px;
+    padding-bottom: 0;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+.tituloCliente {
+    margin-top: 90px;
+}
+.descripcion {
+    margin-bottom: 0;
+    margin-top: 40px;
+}
+.gtin {
+    margin-bottom: 40px;
+}
+.precio {
+    margin-bottom: 60px;
+}
+/* Boton */
+.btn-compra {
+    border: 0;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    padding: 30px;
+    transition: .2s;
+}
+.btn-compra:hover{
+    background-color: white;
+    color: black;
+}
+hr {
+    margin-bottom: 0;
+}
+svg {
+    cursor: pointer;
+}
+.cantidadProductos {
+    display: flex;
+    justify-content: space-evenly;
+}
+img {
+    width: 340px;
+    height: 390px;
+}

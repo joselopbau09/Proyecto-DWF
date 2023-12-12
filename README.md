@@ -1,4 +1,15 @@
-# Practica05
+# Proyecto Desarrollo Web Frontend 2024-1
+
+## Integrantes
+
+    1. Erick Iram García Velasco
+    2. José Luis López Bautista
+    3. Eduardo Alfonso Reyes López
+
+## Pre-ejecución
+
+En la carpeta database/ se encuentran dos scripts SQL. El archivo DDL contiene las definiciones de las tablas de la base de datos. Mientras que el DML tiene el poblamiento de la misma.
+Para visualizar en su totalidad la página web, es necesario ejecutar ambos scripts en el correspondiente esquema MySQL.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
 
