@@ -311,38 +311,50 @@ export class ProductImageComponent {
 
   // Agregar el producto al carrito
   public agregarAlCarrito(): void {
-    this.productoParaCarrito = {
-      gtin: this.product.gtin,
-      image: 'String',
-      product: this.product,
-      quantity: this.cantidadProducto,
-      rfc: 'SAAI920101A01'
-    }
-    this.cartService.addToCart(this.productoParaCarrito).subscribe(
-      res => {
-        // muestra mensaje de confirmación
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          toast: true,
-          text: 'Producto agregado al carrito!',
-          background: '#E8F8F8',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      },
-      err => {
-        // muestra mensaje de error
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          toast: true,
-          showConfirmButton: false,
-          text: 'No Se pudo agregar al carrito',
-          background: '#F8E8F8',
-          timer: 2000
-        });
+    if(this.product.status != 0){
+      this.productoParaCarrito = {
+        gtin: this.product.gtin,
+        image: 'String',
+        product: this.product,
+        quantity: this.cantidadProducto,
+        rfc: 'SAAI920101A01'
       }
-    );
+      this.cartService.addToCart(this.productoParaCarrito).subscribe(
+        res => {
+          // muestra mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'Producto agregado al carrito!',
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        },
+        err => {
+          // muestra mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: 'No Se pudo agregar al carrito',
+            background: '#F8E8F8',
+            timer: 2000
+          });
+        }
+      );
+    }else{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        toast: true,
+        showConfirmButton: false,
+        text: 'El producto está desactivado, no se puede agregar al carrito',
+        background: '#F8E8F8',
+        timer: 2000
+      });
+    }
   }
 }
