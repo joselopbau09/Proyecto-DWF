@@ -142,7 +142,7 @@ export class CartSummaryComponent implements OnChanges{
           icon: 'error',
           toast: true,
           showConfirmButton: false,
-          text:  `Hubo un error al realizar la compra: ${err}` ,
+          text:  `Hubo un error al realizar la compra, verifica tu carrito` ,
           background: '#F8E8F8',
           timer: 2000
         });
